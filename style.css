@@ -1,0 +1,285 @@
+/* * {
+    transition: all 0.5s;
+} */
+
+body
+{
+    overflow: hidden;
+}
+
+div
+{
+    margin: 0;
+    padding: 0;
+}
+
+.basicTimer
+{
+    list-style: none;
+    height: 2.5em;
+    width: 100%;
+    opacity: 1;
+    /* display: flex; */
+    /* flex-direction: column; */
+    transition: all 0.5s;
+}
+
+.basicTimer .labels
+{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+.ldBar-label
+{
+    display: none;
+}
+
+.framePanel
+{
+    padding: 5px;
+}
+
+#mainFrame
+{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#menu
+{
+    flex: 1 25%;
+}
+
+#timers
+{
+    flex: 3 75%;
+    display: flex;
+    flex-direction: row;
+}
+
+#mainTimer
+{
+    flex: 2 66.6%;
+    position: relative;
+}
+
+#subTimerContainer
+{
+    flex: 1 33.3%;
+    /* display: flex; */
+    align-items: center;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+}
+
+.name_label
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    transition: all 0.5s;
+}
+
+.name_label span
+{
+    margin-left: .2em;
+    font-size: .7em;
+    color: deeppink;
+    display: none;
+    /* margin-left: -3em; */
+    opacity: 0;
+}
+
+#upcomingTimers .name_label span
+{
+    margin-left: .2em;
+    font-size: .7em;
+    color: deeppink;
+    display: inline;
+    /* margin-left: -3em; */
+    opacity: 0;
+}
+
+.bigTimer
+{
+    position: relative;
+}
+
+.bigTimer .labels
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+#upcomingTimers
+{
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#upcomingTimers p
+{
+    margin-bottom: 0.1em;
+}
+
+#upcomingTimers .basicTimer
+{
+    width: 80%;
+}
+
+#upcomingTimers .basicTimer.first
+{
+    width: 110%;
+    height: 3.3em;
+    /* flex-direction: column-reverse; */
+}
+
+#upcomingTimers .basicTimer.first .name_label
+{
+    font-size: 28px;
+}
+
+#upcomingTimers .basicTimer.first .name_label span
+{
+    /* display: inline; */
+    opacity: 1;
+}
+
+#upcomingTimers .basicTimer.first .time_label
+{
+    font-size: 32px;
+    margin-top: -0.16em;
+    /* margin-bottom: -0.25em; */
+}
+
+#upcomingTimers .basicTimer.first .time_label::before
+{
+    content: "in";
+    color: lightgrey;
+    font-size: 20px;
+    margin-right: .4em;
+}
+
+#upcomingTimerContainer
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.bigTimer .name_label
+{
+    font-size: 36px;
+}
+
+.time_label
+{
+    font-size: 20px;
+    margin-top: -0.25em;
+    transition: all 0.5s;
+}
+
+.time_label h1,
+.time_label h2,
+.time_label h3
+{
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: normal;
+    line-height: 1.0;
+    margin: 0;
+    padding: 0;
+}
+
+.time_label h1
+{
+    font-size: inherit;
+}
+
+.time_label h2
+{
+    font-size: inherit;
+}
+
+.time_label h3
+{
+    font-size: .9em;
+    color: grey;
+}
+
+.bigTimer .time_label {font-size: 36px;}
+.bigTimer h1, .bigTimer h2, .bigTimer h3 { line-height: 48px; font-weight: bold; }
+.bigTimer h3 { font-size: .8em; }
+
+.right-slide-in
+{
+    overflow: hidden;
+    height: 0;
+    transform: scale(1.0, 0.0);
+    opacity: 0;
+    margin-left: 400%;
+    /* left: 100%; */
+}
+
+.bottom-slide-in
+{
+    overflow: hidden;
+    height: 2.5em;
+    opacity: 0;
+    padding-top: 400%;
+}
+
+.fade-in
+{
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}
+
+.basicTimer.up-disappear
+{
+    overflow: hidden;
+    opacity: 0;
+    margin-top: -4em;
+    margin-bottom: 1.5em;
+}
+
+.basicTimer.first.up-disappear
+{
+    margin-bottom: 0.7em;
+}
+
+.basicTimer.fade-disappear
+{
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}
+
+#upcomingTimers .basicTimer.first.fade-disappear
+{
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}

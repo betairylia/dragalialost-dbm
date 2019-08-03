@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Dragalia Lost timelines</title>
+
+    <link rel = "stylesheet" type = "text/css" href = "loading-bar/dist/loading-bar.css"/>
+    <link rel = "stylesheet" type = "text/css" href = "style.css"/>
+    <script type = "text/javascript" src = "loading-bar/dist/loading-bar.js"></script>
+
+    <script type = "text/javascript" src = "js/renderer.js"></script>
+    <script type = "text/javascript" src = "js/timeline.js"></script>
+
+</head>
+<body>
+    <template id = 'bigTimer'>
+        <div class = 'timer bigTimer'>
+            <div class = 'ld' style = "width: 100%; height: 100%; margin: auto;"></div>
+            <div class = 'labels'>
+                <div class = 'name_label'></div>
+                <div class = 'time_label'></div>
+            </div>
+        </div>
+    </template>
+
+    <template id = 'basicTimer'>
+        <li class = 'timer basicTimer'>
+            <div class = 'ld' style = "width: 100%; height: fit-content;"></div>
+            <div class = 'labels'>
+                <div class = 'name_label'></div>
+                <div class = 'time_label'></div>
+            </div>
+        </li>
+    </template>
+
+    <div id = 'mainFrame'>
+        <div id = 'menu' class = 'framePanel'>
+            This is menu
+            <button onclick="renderer.addTimer({name: `timer${renderer.totalTimers}`, time: Math.random() * 15.0 + 5.0, displayName: 'NoName'});">Add</button>
+        </div>
+        <div id = 'timers'>
+            <div id = 'mainTimer' class = 'framePanel'>
+                <div id = 'upcomingTimers'>
+                    <p class = 'name_label' style = "font-size: 12px">接下来</p>
+                    <div id = 'upcomingTimerContainer'>
+                    </div>
+                </div>
+            </div>
+            <ul id = 'subTimerContainer' class = 'framePanel'></ul>
+        </div>
+    </div>
+
+    <script>
+        var tl = new Timeline();
+        var renderer = new Renderer("mainTimer", "subTimerContainer", "upcomingTimerContainer", tl);
+
+        // for (var i = 0; i < 10; i++)
+        // {
+        //     renderer.addTimer({name: `timer${i}`, time: Math.random() * 15.0 + 5.0, displayName: "NoName"});
+        // }
+
+        var r = document.getElementById("subTimerContainer");
+        
+        function upd()
+        {
+            tl.update(1 / 60.0);
+            renderer.render();
+            requestAnimationFrame(upd);
+        }
+
+        upd();
+    </script>
+</body>
+</html>
