@@ -1,0 +1,3 @@
+[submodule "loading-bar"]
+	path = loading-bar
+	url = https://github.com/loadingio/loading-bar.git
