@@ -178,7 +178,7 @@ class Timeline
         this.addActionInvMSec('init', 0, 35, 'chas');
         this.addActionInvMSec('init', 0, 25, 'sear');
 
-        this.addEventInvMSec('init', 'bk0410', 'break 4:10', 'break', 4, 10);
+        // this.addEventInvMSec('init', 'bk0410', 'break 4:10', 'break', 4, 10);
     }
 
     HMC_test()
