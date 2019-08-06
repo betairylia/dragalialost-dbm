@@ -27,7 +27,8 @@ class Timeline
 
     HBH_test()
     {
-        this.name = "High Brunhilda"
+        // this.name = "High Brunhilda"
+        this.name = "真布伦希尔德"
 
         this.actions = {
             'boom': {
@@ -182,7 +183,8 @@ class Timeline
 
     HMC_test()
     {
-        this.name = "High Mercury"
+        // this.name = "High Mercury"
+        this.name = "真墨丘利"
         this.mainColor = "deepskyblue";
 
         this.actions = {
