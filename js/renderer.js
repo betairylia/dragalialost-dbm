@@ -1,3 +1,10 @@
+var enableSound = false;
+var countdowns = [];
+for(var i = 0; i < 5; i++)
+{
+    countdowns.push(new Audio(`audio/zh${i+1}.mp3`));
+}
+
 class Timebar
 {
     constructor(name, time, src, dest, ldBarOpt, options)
@@ -34,6 +41,10 @@ class Timebar
         destElem.removeChild(this.dom);
 
         this.state = 'alive';
+        this.countdown = 0;
+        this.currentCountDown = 20;
+        this.alertPlayed = false;
+
 
         if (options)
         {
@@ -52,6 +63,18 @@ class Timebar
             if (options.count)
             {
                 this.count = options.count;
+            }
+            if (options.alert)
+            {
+                this.alertAudio = options.alert;
+            }
+            if (options.color)
+            {
+                this.color = options.color;
+            }
+            if (options.countdown)
+            {
+                this.countdown = options.countdown;
             }
             // TODO
         }
@@ -102,6 +125,31 @@ class Timebar
         {
             this.labelTime.innerHTML = `<h2>${second}</h2>.<h3>${milsec}</h3>`;
         }
+
+        // alert
+        if(this.alertAudio && this.alertPlayed == false && timeRemain < (this.countdown + 1))
+        {
+            this.alertPlayed = true;
+            
+            if(enableSound == true)
+            {
+                this.alertAudio.play();
+            }
+        }
+
+        if(timeRemain < this.countdown && (second + 1) != this.currentCountDown)
+        {
+            this.currentCountDown = second + 1;
+            if(enableSound)
+            {
+                countdowns[second].play();
+            }
+        }
+
+        if(timeRemain > (this.countdown + 2))
+        {
+            this.alertPlayed = false;
+        }
     }
 
     in()
@@ -121,7 +169,7 @@ class Timebar
 
     addClass(cls)
     {
-        this.dom.classList.add(cls);
+        this.dom.classList.add(cls);12
     }
 
     removeClass(cls)
@@ -190,6 +238,7 @@ class Renderer
             name, this.timerLenth, "basicTimer", this.idSub,
             {
                 "path": "M0 3L200 3",
+                "stroke": timer.color,
                 "stroke-width": "6",
                 "stroke-trail-width": "2",
                 "precision": "0.1",
@@ -200,6 +249,9 @@ class Renderer
                 "animation": "right-slide-in",
                 "initialTime": timer.time,
                 "count": timer.count,
+                "alert": timer.sfx,
+                "countdown": timer.countdown,
+                "color": timer.color,
             }
         )
         
@@ -268,11 +320,7 @@ class Renderer
                     }
                     else if (queue == 'upc')
                     {
-                        if(timer.timeRemain <= 0.0 && timer.state == 'alive')
-                        {
-                            this.transist(timer, 'upc', 'del', 'up-disappear', 'none');
-                        }
-                        else if(timer.timeRemain >= this.upcomingThreshold && timer.state == 'alive')
+                        if(timer.timeRemain >= this.upcomingThreshold && timer.state == 'alive')
                         {
                             this.transist(timer, 'upc', 'sub', 'fade-disappear', 'right-slide-in');
                         }
@@ -358,6 +406,7 @@ class Renderer
                 timer.name, timer.timeMax, "basicTimer", this.queues[dest].container.id,
                 {
                     "path": "M0 3L200 3",
+                    "stroke": timer.color,
                     "stroke-width": "6",
                     "stroke-trail-width": "2",
                     "precision": "0.1",
@@ -366,8 +415,11 @@ class Renderer
                     "displayName": timer.displayName,
                     "viewBox": "0 0 200 6",
                     "animation": iAnim,
-                    "initialTime": timer.timeElapsed,
+                    "initialTime": timer.time,
                     "count": timer.count,
+                    "alert": timer.alertAudio,
+                    "countdown": timer.countdown,
+                    "color": timer.color,
                 }
             );
             this.queues[dest].timers.push(newTimer);
@@ -399,5 +451,96 @@ class Renderer
             }
         }
         timer.state = "exit";
+    }
+}
+
+class TLRenderer
+{
+    constructor(idTL, idTtlItem, idTtlBlock, timeline)
+    {
+        let entry           = document.getElementById(idTL);
+        let itemTemplate    = document.getElementById(idTtlItem);
+        let blockTemplate   = document.getElementById(idTtlBlock);
+
+        this.allComboBoxes  = [];
+        this.drawTree(timeline, 'Standard timeline', timeline.initialState, entry, itemTemplate, blockTemplate, 0);
+    }
+
+    drawTree(timeline, comment, tree, entry, itemTemplate, blockTemplate, actCount)
+    {        
+        let curTree = timeline.timeTree[tree];
+        let blockDOM = blockTemplate.content.cloneNode(true).children[0];
+
+        blockDOM.id = tree;
+        blockDOM.querySelector(".title").innerText = curTree.displayName;
+
+        entry.appendChild(blockDOM);
+        let blockEntry = blockDOM.querySelector(".timeline-content-list");
+
+        let cmt = document.createElement("ul");
+        cmt.classList.add('list-title');
+        cmt.innerText = comment;
+        blockEntry.appendChild(cmt);
+
+        let curTime = 0;
+
+        let prevTime = 0;
+
+        for(let item of curTree.timeline)
+        {
+            actCount += 1;
+
+            let curTime = item[0];
+            let curAct  = item[1];
+
+            // Find actions before current time
+            for(let action in curTree.actions)
+            {
+                for(let keyTime of curTree.actions[action])
+                {
+                    if(keyTime[0] <= curTime && keyTime[0] > prevTime)
+                    {
+                        // Insert a block here
+                        this.drawTree(timeline, `Event "${action}", > ${Math.floor((timeline.totalTime - keyTime[0]) / 60)}m ${(timeline.totalTime - keyTime[0]) % 60}s remain (ref ${Math.floor((timeline.totalTime - timeline.timeTree[keyTime[1]].offset) / 60)}:${(timeline.totalTime - timeline.timeTree[keyTime[1]].offset) % 60})`, keyTime[1], blockEntry, itemTemplate, blockTemplate, actCount);
+                    }
+                }
+            }
+
+            prevTime = curTime;
+
+            // Insert timeline item
+            let itemDOM = itemTemplate.content.cloneNode(true).children[0];
+            itemDOM.id = `${curAct}-${curTime}`;
+
+            itemDOM.querySelector("#idx").innerText = `${actCount}.`;
+            itemDOM.querySelector("#min").value = Math.floor((timeline.totalTime - curTime) / 60);
+            itemDOM.querySelector("#sec").value = (timeline.totalTime - curTime) % 60;
+
+            let idx = 0;
+            let selectDOM = itemDOM.querySelector("#action");
+            for(let action in timeline.actions)
+            {
+                let optionDOM = document.createElement("option");
+                optionDOM.innerText = `${timeline.actions[action].shortcut} - ${timeline.actions[action].displayName}`;
+                optionDOM.value = action;
+
+                selectDOM.appendChild(optionDOM);
+                
+                if(action == curAct)
+                {
+                    selectDOM.selectedIndex = idx;
+                }
+
+                idx += 1;
+            }
+
+            blockEntry.appendChild(itemDOM);
+        }
+
+        if(curTree.following[1])
+        {
+            // Insert a block afterwards
+            this.drawTree(timeline, 'Follows by', curTree.following[1], entry, itemTemplate, blockTemplate, actCount);
+        }
     }
 }

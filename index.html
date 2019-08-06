@@ -35,17 +35,65 @@
         </li>
     </template>
 
+    <template id = "timelineEventItem">
+        <ul class = "timeline-event">
+            <p id = "idx">
+                1.
+            </p>
+            <p>
+                (R) 
+                <input id = "min" type = "text" size = "1"/>
+                m
+                <input id = "sec" type = "text" size = "1"/>
+                s
+            </p>
+            <p>
+                <select id = "action">
+                </select>
+            </p>
+        </ul>
+    </template>
+
+    <template id = "timelineTreeBlock">
+        <div class = "timeline-block">
+            <div class = "title">
+            </div>
+            <div class = "contents">
+                <li class = "timeline-content-list">
+                    
+                </li>
+            </div>
+        </div>
+    </template>
+
     <div id = 'mainFrame'>
         <div id = 'menu' class = 'framePanel'>
             This is menu
-            <button onclick="renderer.addTimer({name: `timer${renderer.totalTimers}`, time: Math.random() * 15.0 + 5.0, displayName: 'NoName'});">Add</button>
+            <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <button onclick = "resetAll()" style = "height: 3em; width: 15em;"> Reload everything </button>
+                <span><input type="checkbox" id="enableAudio" onclick="var cb = document.getElementById('enableAudio'); enableSound = cb.checked;"/> Audio</span>
+                <select id = "bossName">
+                    <option value = "HBH">High Brunhilda</option>
+                    <option value = "HMC" selected>High Mercury</option>
+                    <option value = "HJP">High Jupiter</option>
+                </select>
+            </p>
+            <div id = "timeline_preview" class = "long-preview">
+                <p style = "text-align: center;">Timeline preview</p>
+                <div id = "timeline_container"></div>
+            </div>
         </div>
         <div id = 'timers'>
             <div id = 'mainTimer' class = 'framePanel'>
+                <div id = 'specialComment'>
+                    Space bar (up) = <strong> BREAK !! </strong>
+                </div>
                 <div id = 'upcomingTimers'>
                     <p class = 'name_label' style = "font-size: 12px">接下来</p>
                     <div id = 'upcomingTimerContainer'>
                     </div>
+                </div>
+                <div id = 'mainTimerContainer' class = 'framePanel'>
                 </div>
             </div>
             <ul id = 'subTimerContainer' class = 'framePanel'></ul>
@@ -53,15 +101,31 @@
     </div>
 
     <script>
-        var tl = new Timeline();
-        var renderer = new Renderer("mainTimer", "subTimerContainer", "upcomingTimerContainer", tl);
+        var tl;
+        var renderer;
+        var tlRender;
 
-        // for (var i = 0; i < 10; i++)
-        // {
-        //     renderer.addTimer({name: `timer${i}`, time: Math.random() * 15.0 + 5.0, displayName: "NoName"});
-        // }
+        function resetAll()
+        {
+            document.getElementById("timeline_container").innerHTML = "";
+            document.getElementById("subTimerContainer").innerHTML = "";
+            document.getElementById("mainTimerContainer").innerHTML = "";
+            document.getElementById("upcomingTimerContainer").innerHTML = "";
+
+            tl = new Timeline(document.getElementById("bossName").value);
+            renderer = new Renderer("mainTimerContainer", "subTimerContainer", "upcomingTimerContainer", tl);
+            tlRender = new TLRenderer("timeline_container", "timelineEventItem", "timelineTreeBlock", tl);
+        }
 
         var r = document.getElementById("subTimerContainer");
+
+        document.onkeyup = function(ev)
+        {
+            if(ev.key == ' ')
+            {
+                tl.trigger('break');
+            }
+        }
         
         function upd()
         {
@@ -70,6 +134,7 @@
             requestAnimationFrame(upd);
         }
 
+        resetAll();
         upd();
     </script>
 </body>
