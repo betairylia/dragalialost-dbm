@@ -1,13 +1,13 @@
 class Timeline
 {
-    mainColor = "lightcoral";
-    totalTime = 300; //5min
-    name = "Untitled Run";
-    currentTime = 0.0;
-    stateBegins = 0.0;
-
     constructor(initName)
     {
+        this.mainColor = "lightcoral";
+        this.totalTime = 300; //5min
+        this.name = "Untitled Run";
+        this.currentTime = 0.0;
+        this.stateBegins = 0.0;
+
         this.timeTree = {};
         this.initialState = 'init';
         this.actions = {}; // {name, displayName, color, alertSFX, countdown}
