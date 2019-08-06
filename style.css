@@ -76,11 +76,18 @@ div
 #mainTimer #specialComment
 {
     position: absolute;
-    top: 16%;
+    top: 8%;
     margin: auto;
     width: 100%;
     text-align: center;
     font-size: 1.4em;
+    z-index: 10;
+}
+
+#mainTimer #specialComment p
+{
+    padding: 0;
+    margin: 0;
 }
 
 #mainTimer #specialComment strong
@@ -153,6 +160,7 @@ div
     display: flex;
     align-items: center;
     flex-direction: column;
+    z-index: 1;
 }
 
 #upcomingTimers p
