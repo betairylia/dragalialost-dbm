@@ -78,6 +78,12 @@
                     <option value = "HJP">High Jupiter</option>
                 </select>
             </p>
+            <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <button onclick = "playing = !playing;" style = "height: 2em; min-width: 8em;"> Pause / Play </button>
+                <button onclick = "tl.reset(); playing = false;" style = "height: 2em; min-width: 8em;"> Stop </button>
+                <button onclick = "tl.adjust(-0.5);" style = "height: 2em; min-width: 8em;"> + 0.5s (←) </button>
+                <button onclick = "tl.adjust(0.5);" style = "height: 2em; min-width: 8em;"> - 0.5s (→) </button>
+            </p>
             <div id = "timeline_preview" class = "long-preview">
                 <p style = "text-align: center;">Timeline preview</p>
                 <div id = "timeline_container"></div>
@@ -106,6 +112,8 @@
         var renderer;
         var tlRender;
 
+        var playing = false;
+
         function resetAll()
         {
             document.getElementById("timeline_container").innerHTML = "";
@@ -126,11 +134,22 @@
             {
                 tl.trigger('break');
             }
+            if(ev.keyCode == 37) // <-
+            {
+                tl.adjust(-0.5);
+            }
+            if(ev.keyCode == 39) // ->
+            {
+                tl.adjust(0.5);
+            }
         }
         
         function upd()
         {
-            tl.update(1 / 60.0);
+            if(this.playing)
+            {
+                tl.update(1 / 60.0);
+            }
             renderer.render();
             requestAnimationFrame(upd);
         }

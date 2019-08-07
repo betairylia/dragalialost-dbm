@@ -352,6 +352,11 @@ class Timeline
         // this.addActionInvMSec('init', , , '');
     }
 
+    adjust(dt)
+    {
+        this.currentTime += dt;
+    }
+
     reset()
     {
         this.currentTime = 0;
