@@ -10,6 +10,7 @@
     <link rel = "stylesheet" type = "text/css" href = "style.css"/>
     <script type = "text/javascript" src = "loading-bar/dist/loading-bar.js"></script>
 
+    <script type = "text/javascript" src = "js/localization.js"></script>
     <script type = "text/javascript" src = "js/renderer.js"></script>
     <script type = "text/javascript" src = "js/timeline.js"></script>
 
@@ -68,24 +69,30 @@
 
     <div id = 'mainFrame'>
         <div id = 'menu' class = 'framePanel'>
-            This is menu
-            <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <button onclick = "resetAll()" style = "height: 3em; width: 15em;"> Reload everything </button>
-                <span><input type="checkbox" id="enableAudio" onclick="var cb = document.getElementById('enableAudio'); enableSound = cb.checked;"/> Audio</span>
-                <select id = "bossName">
-                    <option value = "HBH">High Brunhilda</option>
-                    <option value = "HMC" selected>High Mercury</option>
-                    <option value = "HJP">High Jupiter</option>
+            <p style = "display: flex; justify-content: space-between;">
+                语言 / Languages / 言語
+                <select id = "language" style = "width: 10em; height: 2em;" onchange = "resetAll();">
+                    <option value = "en-us">English</option>
+                    <option value = "zh-cn" selected>中文（简体）</option>
                 </select>
             </p>
             <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <button onclick = "playing = !playing;" style = "height: 2em; min-width: 8em;"> Pause / Play </button>
-                <button onclick = "tl.reset(); playing = false;" style = "height: 2em; min-width: 8em;"> Stop </button>
+                <button onclick = "resetAll()" style = "height: 3em; width: 15em;" class = "autoLoc_reload"> Reload everything </button>
+                <span><input type="checkbox" id="enableAudio" class = "autoLoc_audio" onclick="var cb = document.getElementById('enableAudio'); enableSound = cb.checked;"/> Audio</span>
+                <select id = "bossName" style = "height: 2em; width: 8em;" onchange = "resetAll();">
+                    <option class = "autoLoc_HBH" value = "HBH">High Brunhilda</option>
+                    <option class = "autoLoc_HMC" value = "HMC">High Mercury</option>
+                    <option class = "autoLoc_HJP" value = "HJP" selected>High Jupiter</option>
+                </select>
+            </p>
+            <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <button onclick = "playing = !playing;" style = "height: 2em; min-width: 8em;" class = "autoLoc_play-pause"> Pause / Play </button>
+                <button onclick = "tl.reset(); playing = false;" style = "height: 2em; min-width: 8em;" class = "autoLoc_stop"> Stop </button>
                 <button onclick = "tl.adjust(-0.5);" style = "height: 2em; min-width: 8em;"> + 0.5s (←) </button>
                 <button onclick = "tl.adjust(0.5);" style = "height: 2em; min-width: 8em;"> - 0.5s (→) </button>
             </p>
             <div id = "timeline_preview" class = "long-preview">
-                <p style = "text-align: center;">Timeline preview</p>
+                <p style = "text-align: center;" class = "autoLoc_timeline-preview">Timeline preview</p>
                 <div id = "timeline_container"></div>
             </div>
         </div>
@@ -116,6 +123,8 @@
 
         function resetAll()
         {
+            setLocale(document.getElementById('language').value);
+
             document.getElementById("timeline_container").innerHTML = "";
             document.getElementById("subTimerContainer").innerHTML = "";
             document.getElementById("mainTimerContainer").innerHTML = "";

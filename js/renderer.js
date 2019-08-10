@@ -208,7 +208,7 @@ class Renderer
                 "stroke-trail-width": "2",
             },
             {
-                "displayName": timeline.name,
+                "displayName": timeline.name[document.locale],
             }
         );
 
@@ -244,7 +244,7 @@ class Renderer
                 "precision": "0.1",
             },
             {
-                "displayName": timer.displayName,
+                "displayName": timer.displayName[document.locale],
                 "viewBox": "0 0 200 6",
                 "animation": "right-slide-in",
                 "initialTime": timer.time,
@@ -463,11 +463,23 @@ class TLRenderer
         let blockTemplate   = document.getElementById(idTtlBlock);
 
         this.allComboBoxes  = [];
-        this.drawTree(timeline, 'Standard timeline', timeline.initialState, entry, itemTemplate, blockTemplate, 0);
+        this.drawn = {};
+        this.drawTree(timeline, `${loc('standard')} (${loc('ref-to')} ${this.timeStr(timeline, timeline.timeTree[timeline.initialState].offset)})`, timeline.initialState, entry, itemTemplate, blockTemplate, 0);
+    }
+
+    timeStr(timeline, time)
+    {
+        return `${Math.floor((timeline.totalTime - time) / 60)}m ${((timeline.totalTime - time) % 60).toFixed(0)}s`
     }
 
     drawTree(timeline, comment, tree, entry, itemTemplate, blockTemplate, actCount)
     {        
+        if(this.drawn.hasOwnProperty(tree) && this.drawn[tree])
+        {
+            return;
+        }
+        this.drawn[tree] = true;
+        
         let curTree = timeline.timeTree[tree];
         let blockDOM = blockTemplate.content.cloneNode(true).children[0];
 
@@ -501,7 +513,7 @@ class TLRenderer
                     if(keyTime[0] <= curTime && keyTime[0] > prevTime)
                     {
                         // Insert a block here
-                        this.drawTree(timeline, `Event "${action}", > ${Math.floor((timeline.totalTime - keyTime[0]) / 60)}m ${(timeline.totalTime - keyTime[0]) % 60}s remain (ref ${Math.floor((timeline.totalTime - timeline.timeTree[keyTime[1]].offset) / 60)}:${(timeline.totalTime - timeline.timeTree[keyTime[1]].offset) % 60})`, keyTime[1], blockEntry, itemTemplate, blockTemplate, actCount);
+                        this.drawTree(timeline, `${loc('event')} "${action}", > ${this.timeStr(timeline, keyTime[0])} ${loc('remain')} (${loc('ref-to')} ${this.timeStr(timeline, timeline.timeTree[keyTime[1]].offset)})`, keyTime[1], blockEntry, itemTemplate, blockTemplate, actCount);
                     }
                 }
             }
@@ -521,7 +533,7 @@ class TLRenderer
             for(let action in timeline.actions)
             {
                 let optionDOM = document.createElement("option");
-                optionDOM.innerText = `${timeline.actions[action].shortcut} - ${timeline.actions[action].displayName}`;
+                optionDOM.innerText = `${timeline.actions[action].shortcut} - ${timeline.actions[action].displayName[document.locale]}`;
                 optionDOM.value = action;
 
                 selectDOM.appendChild(optionDOM);
@@ -537,10 +549,53 @@ class TLRenderer
             blockEntry.appendChild(itemDOM);
         }
 
+        // Draw actions in the end
+        for(let action in curTree.actions)
+        {
+            for(let keyTime of curTree.actions[action])
+            {
+                if(keyTime[0] > prevTime)
+                {
+                    // Insert a block here
+                    this.drawTree(timeline, `${loc('event')} "${action}", > ${this.timeStr(timeline, keyTime[0])} ${loc('remain')} (${loc('ref-to')} ${this.timeStr(timeline, timeline.timeTree[keyTime[1]].offset)})`, keyTime[1], blockEntry, itemTemplate, blockTemplate, actCount);
+                }
+            }
+        }
+
         if(curTree.following[1])
         {
             // Insert a block afterwards
-            this.drawTree(timeline, 'Follows by', curTree.following[1], entry, itemTemplate, blockTemplate, actCount);
+            this.drawTree(timeline, `${loc('follows')}, ${this.timeStr(timeline, curTree.following[0])} (${loc('ref-to')} ${this.timeStr(timeline, timeline.timeTree[curTree.following[1]].offset)})`, curTree.following[1], entry, itemTemplate, blockTemplate, actCount);
+        }
+    }
+}
+
+function setLocale(locale)
+{
+    document.locale = locale;
+    setLocaleResNode(document);
+}
+
+function setLocaleResNode(DOM)
+{
+    if(DOM.classList)
+    {
+        DOM.classList.forEach((value, idx, arr) => {
+            if(value.includes("autoLoc"))
+            {
+                strID = value.split('_');
+                strID.splice(0, 1);
+                strID = strID.join('_');
+                DOM.innerText = loc(strID);
+            }
+        });
+    }
+
+    if(DOM.children)
+    {
+        for(let child of DOM.children)
+        {
+            setLocaleResNode(child);
         }
     }
 }

@@ -28,95 +28,137 @@ class Timeline
     HBH_test()
     {
         // this.name = "High Brunhilda"
-        this.name = "真布伦希尔德"
+        this.name = {
+            'en-us': "High Brunhilda",
+            'zh-cn': "真布伦希尔德",
+        }
 
         this.actions = {
             'boom': {
-                'displayName':  "真焰爆发",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "真焰爆发",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '1',
             },
             'jump': {
-                'displayName':  "后跳",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "后跳",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '2',
             },
             'fbre': {
-                'displayName':  "烈焰吐息",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "烈焰吐息",
+                },
                 'color':        "orange",
                 'alertSFX':     'fbre_test.mp3',
                 'countdown':    3,
                 'shortcut':     '3',
             },
             'char': {
-                'displayName':  "前冲",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "前冲",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '4',
             },
             'claw': {
-                'displayName':  "爪击",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "爪击",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '5',
             },
             'crim': {
-                'displayName':  "绯红地狱",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "绯红地狱",
+                },
                 'color':        "crimson",
                 'alertSFX':     'crim_short_test.mp3',
                 'countdown':    5,
                 'shortcut':     '6',
             },
             'volc': {
-                'displayName':  "陨落熔岩",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "陨落熔岩",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '7',
             },
             'hell': {
-                'displayName':  "地狱之火",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "地狱之火",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '8',
             },
             'chas': {
-                'displayName':  "烈焰追击",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "烈焰追击",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '9',
             },
             'sear': {
-                'displayName':  "红莲阵",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "红莲阵",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '0',
             },
             'mete': {
-                'displayName':  "小陨石",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "小陨石",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     'q',
             },
             'gran': {
-                'displayName':  "真 · 火焰国度",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "真 · 火焰国度",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     'w',
             },
             'cros': {
-                'displayName':  "真十字火焰",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "真十字火焰",
+                },
                 'color':        "orange",
                 'alertSFX':     null,
                 'countdown':    0,
@@ -184,100 +226,142 @@ class Timeline
     HMC_test()
     {
         // this.name = "High Mercury"
-        this.name = "真墨丘利"
+        this.name = {
+            'en-us': "High Mercury",
+            'zh-cn': "真墨丘利",
+        }
         this.mainColor = "deepskyblue";
 
         this.actions = {
             'boom': {
-                'displayName':  "审判漩涡",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "审判漩涡",
+                },
                 'color':        "dodgerblue",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '1',
             },
             'down': {
-                'displayName':  "下砸",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "下砸",
+                },
                 'color':        "cadetblue",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '2',
             },
             'dash': {
-                'displayName':  "前冲",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "前冲",
+                },
                 'color':        "cadetblue",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '3',
             },
             'tail': {
-                'displayName':  "甩尾",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "甩尾",
+                },
                 'color':        "blueviolet",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '4',
             },
             'spot': {
-                'displayName':  "水弹",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "水弹",
+                },
                 'color':        "dodgerblue",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '5',
             },
             'wash': {
-                'displayName':  "洗衣机",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "洗衣机",
+                },
                 'color':        "blue",
                 'alertSFX':     null,
                 'countdown':    4,
                 'shortcut':     '6',
             },
             'bubb': {
-                'displayName':  "救济之泡",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "救济之泡",
+                },
                 'color':        "springgreen",
                 'alertSFX':     null,
                 'countdown':    0,
                 'shortcut':     '7',
             },
             'fall': {
-                'displayName':  "瀑布",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "瀑布",
+                },
                 'color':        "aqua",
                 'alertSFX':     null,
                 'countdown':    5,
                 'shortcut':     '8',
             },
             'lock': {
-                'displayName':  "水之牢笼",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "水之牢笼",
+                },
                 'color':        "steelblue",
                 'alertSFX':     null,
                 'countdown':    3,
                 'shortcut':     '9',
             },
             'chas': {
-                'displayName':  "追踪水球",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "追踪水球",
+                },
                 'color':        "royalblue",
                 'alertSFX':     null,
                 'countdown':    2,
                 'shortcut':     '0',
             },
             'spre': {
-                'displayName':  "增殖水泡",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "增殖水泡",
+                },
                 'color':        "powderblue",
                 'alertSFX':     null,
                 'countdown':    5,
                 'shortcut':     'q',
             },
             'mobs': {
-                'displayName':  "召唤伙伴",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "召唤伙伴",
+                },
                 'color':        "gold",
                 'alertSFX':     null,
                 'countdown':    3,
                 'shortcut':     'w',
             },
             'brke': {
-                'displayName':  "Break 结束",
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "Break 结束",
+                },
                 'color':        "khaki",
                 'alertSFX':     null,
                 'countdown':    3,
-                'shortcut':     'w',
+                'shortcut':     'e',
             },
         };
 
@@ -352,6 +436,278 @@ class Timeline
         // this.addActionInvMSec('init', , , '');
     }
 
+    HJP_test()
+    {
+        // this.name = "High Mercury"
+        this.name = {
+            'en-us': "High Jupiter",
+            'zh-cn': "真朱庇特",
+        }
+        this.mainColor = "gold";
+
+        this.actions = {
+            'boom': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "绝对雷暴",
+                },
+                'color':        "gold",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '0',
+            },
+            'peck': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "啄击",
+                },
+                'color':        "burlywood",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '1',
+            },
+            'dash': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "前冲",
+                },
+                'color':        "burlywood",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '2',
+            },
+            'surr': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "周身雷",
+                },
+                'color':        "yellow",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '3',
+            },
+            'surrx': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "周身雷（十字）",
+                },
+                'color':        "yellow",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '4',
+            },
+            'radi': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "辐射雷击",
+                },
+                'color':        "yellow",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '5',
+            },
+            'scan': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "雷霆之雨",
+                },
+                'color':        "yellow",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '6',
+            },
+            'scan2': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "雷霆之雨（往复）",
+                },
+                'color':        "coral",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '7',
+            },
+            'adde': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "电光一击",
+                },
+                'color':        "mediumvioletred",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '8',
+            },
+            'ibom': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "闪电暴怒（核爆）",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    5,
+                'shortcut':     '9',
+            },
+            'chas': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "唤雷怒击",
+                },
+                'color':        "darkviolet",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '0',
+            },
+            'chrg': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "电光充能",
+                },
+                'color':        "salmon",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     'q',
+            },
+            'dsco': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "球状闪电",
+                },
+                'color':        "aquamarine",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     'w',
+            },
+            'dbom': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "球状闪电（爆炸）",
+                },
+                'color':        "aquamarine",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     'w',
+            },
+            'brke': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "Break 结束",
+                },
+                'color':        "yellowgreen",
+                'alertSFX':     null,
+                'countdown':    3,
+                'shortcut':     'e',
+            },
+        };
+
+        this.addActionInvMSec('init', 4, 56, 'boom');
+        this.addActionInvMSec('init', 4, 52, 'peck');
+        this.addActionInvMSec('init', 4, 48, 'dash');
+        this.addActionInvMSec('init', 4, 45, 'surr');
+        this.addActionInvMSec('init', 4, 38, 'radi');
+        this.addActionInvMSec('init', 4, 22, 'scan');
+        this.addActionInvMSec('init', 4, 20.5, 'radi');
+        this.addActionInvMSec('init', 4, 15, 'peck');
+        this.addActionInvMSec('init', 4, 10, 'dash');
+        this.addActionInvMSec('init', 4,  7, 'surr');
+        this.addActionInvMSec('init', 4,  0, 'adde');
+        this.addActionInvMSec('init', 3, 48, 'scan');
+        this.addActionInvMSec('init', 3, 46.5, 'radi');
+        this.addActionInvMSec('init', 3, 41, 'ibom');
+        this.followsInvMSec('init', 's1', 'Segment 1', 3, 32, 3, 32);
+
+        this.addEventInvMSec('init', 'rbk1', 'BREAK #1', 'break', 3, 32.1, 3, 47);
+        this.addActionInvMSec('rbk1', 3, 37, 'brke');
+        this.followsInvMSec('rbk1', 's1', 'Segment 1', 3, 32, 3, 32);
+        
+        this.addActionInvMSec('s1', 3, 32, 'chas'); // <- BK node 5s
+        this.addActionInvMSec('s1', 3, 30.5, 'chas');
+        this.addActionInvMSec('s1', 3, 29, 'chas');
+        this.addActionInvMSec('s1', 3, 24, 'chrg');
+        this.followsInvMSec('s1', 's2', 'Segment 2', 3, 20, 3, 20);
+
+        this.addEventInvMSec('s1', 'rbk2', 'BREAK #2', 'break', 3, 20, 3, 32);
+        this.addActionInvMSec('rbk2', 3, 22, 'brke');
+        this.followsInvMSec('rbk2', 's2', 'Segment 2', 3, 20, 3, 20);
+        
+        this.addActionInvMSec('s2', 3, 20, 'peck'); // <- BK node ? 2s ?
+        this.followsInvMSec('s2', 's3', 'Segment 3', 3, 16, 3, 16);
+
+        this.addEventInvMSec('s2', 'rbk3', 'BREAK #3', 'break', 3, 16, 3, 30);
+        this.addActionInvMSec('rbk3', 3, 20, 'brke');
+        this.followsInvMSec('rbk3', 's3', 'Segment 3', 3, 16, 3, 16);
+
+        this.addActionInvMSec('s3', 3, 16, 'dash'); // <- BK node 4s
+        this.followsInvMSec('s3', 's4', 'Segment 4', 3, 11, 3, 11);
+
+        this.addEventInvMSec('s3', 'rbk4', 'BREAK #4', 'break', 3, 11, 3, 26);
+        this.addActionInvMSec('rbk4', 3, 16, 'brke');
+        this.followsInvMSec('rbk4', 's4', 'Segment 4', 3, 11, 3, 11);
+
+        this.addActionInvMSec('s4', 3, 11, 'surr'); // <- BK node 5s
+        this.addActionInvMSec('s4', 3,  9, 'surrx');
+        this.addActionInvMSec('s4', 3,  5, 'radi');
+        this.followsInvMSec('s4', 's5', 'Segment 5', 2, 58, 2, 58);
+
+        this.addEventInvMSec('s4', 'rbk5', 'BREAK #5', 'break', 2, 58, 3, 13);
+        this.addActionInvMSec('rbk5', 3, 3, 'brke');
+        this.followsInvMSec('rbk5', 's5', 'Segment 5', 2, 58, 2, 58);
+        
+        this.addActionInvMSec('s5', 2, 58, 'chas'); // <- BK node 5s
+        this.addActionInvMSec('s5', 2, 56.5, 'chas');
+        this.addActionInvMSec('s5', 2, 55, 'chas');
+        this.addActionInvMSec('s5', 2, 46, 'scan');
+        this.addActionInvMSec('s5', 2, 45, 'scan2');
+        this.addActionInvMSec('s5', 2, 42, 'adde');
+        this.addActionInvMSec('s5', 2, 35, 'dsco');
+        this.addActionInvMSec('s5', 2, 30, 'dbom');
+        this.addActionInvMSec('s5', 2, 29, 'chas');
+        this.addActionInvMSec('s5', 2, 27.5, 'chas');
+        this.addActionInvMSec('s5', 2, 26, 'chas');
+        this.addActionInvMSec('s5', 2, 25, 'dbom');
+        this.addActionInvMSec('s5', 2, 23, 'ibom');
+        this.addActionInvMSec('s5', 2, 20, 'dbom');
+        this.addActionInvMSec('s5', 2, 16, 'peck');
+        this.addActionInvMSec('s5', 2, 15, 'dbom');
+        this.addActionInvMSec('s5', 2, 13, 'dash');
+        this.addActionInvMSec('s5', 2,  8, 'surr');
+        this.addActionInvMSec('s5', 2,  1, 'chas');
+        this.addActionInvMSec('s5', 1, 59.5, 'chas');
+        this.addActionInvMSec('s5', 1, 58, 'chas');
+        this.addActionInvMSec('s5', 1, 49, 'scan');
+        this.addActionInvMSec('s5', 1, 47.5, 'radi');
+        this.addActionInvMSec('s5', 1, 40, 'chrg');
+        this.addActionInvMSec('s5', 1, 35, 'peck');
+        this.addActionInvMSec('s5', 1, 32, 'dash');
+        this.addActionInvMSec('s5', 1, 27, 'surr');
+        this.addActionInvMSec('s5', 1, 25, 'surrx');
+        this.addActionInvMSec('s5', 1, 21, 'chas');
+        this.addActionInvMSec('s5', 1, 19.5, 'chas');
+        this.addActionInvMSec('s5', 1, 18, 'chas');
+        this.addActionInvMSec('s5', 1, 13, 'radi');
+        this.addActionInvMSec('s5', 1,  7, 'dsco');
+        this.addActionInvMSec('s5', 1,  2, 'dbom');
+        this.addActionInvMSec('s5', 1,  0, 'adde');
+        this.addActionInvMSec('s5', 0, 57, 'dbom');
+        this.addActionInvMSec('s5', 0, 52, 'dbom');
+        this.addActionInvMSec('s5', 0, 49, 'scan');
+        this.addActionInvMSec('s5', 0, 48, 'scan2');
+        this.addActionInvMSec('s5', 0, 46, 'dbom');
+        this.addActionInvMSec('s5', 0, 45, 'chas');
+        this.addActionInvMSec('s5', 0, 43.5, 'chas');
+        this.addActionInvMSec('s5', 0, 42, 'chas');
+        this.addActionInvMSec('s5', 0, 39, 'ibom');
+        this.addActionInvMSec('s5', 0, 32, 'peck');
+        this.addActionInvMSec('s5', 0, 28, 'dash');
+        this.addActionInvMSec('s5', 0, 24, 'surr');
+        this.addActionInvMSec('s5', 0, 14, 'scan');
+        this.addActionInvMSec('s5', 0, 11, 'chas');
+        this.addActionInvMSec('s5', 0, 9.5, 'chas');
+        this.addActionInvMSec('s5', 0, 8, 'chas');
+        this.addActionInvMSec('s5', 0, 4, 'radi');
+
+        // this.addEventInvMSec('init', 'p2', 'After 1st BREAK', 'break', 2, 8, 3, 10);
+        // this.addActionInvMSec('init', , , '');
+    }
+
     adjust(dt)
     {
         this.currentTime += dt;
@@ -363,6 +719,7 @@ class Timeline
         this.curState = this.initialState;
         this.curStep = 0;
         this.curActionCnt = {};
+        this.stateBegins = 0;
 
         for(var action of Object.keys(this.actions))
         {
@@ -377,6 +734,11 @@ class Timeline
 
     addTree(name, displayName, offset)
     {
+        if(this.timeTree.hasOwnProperty(name))
+        {
+            return;
+        }
+
         this.timeTree[name] = {
             'timeline': [], // [[time, action_str], ...]
             'local': true,
@@ -399,6 +761,18 @@ class Timeline
 
         this.addTree(dest, dest_dName, reftime);
         this.timeTree[src].actions[event].push([time, dest]);
+    }
+
+    followsInvMSec(src, dest, dest_dName, mins, secs, refm, refs)
+    {
+        let time = mins * 60 + secs;
+        time = this.totalTime - time;
+
+        let reftime = refm * 60 + refs
+        reftime = this.totalTime - reftime;
+
+        this.addTree(dest, dest_dName, reftime);
+        this.timeTree[src].following = [time, dest];
     }
 
     addAction(tree, time, action)
@@ -434,18 +808,28 @@ class Timeline
         console.log(`${event} @ ${this.currentTime.toFixed(2)}: Event triggered but nothing changed.`);
     }
 
-    fetch(length)
+    treeGlobalTime(treeKey, time, begins)
     {
-        var results = {};
-        var tmpstep = this.curStep;
-        var tmpactc = JSON.parse(JSON.stringify(this.curActionCnt));
-        var curline = this.timeTree[this.curState].timeline;
+        return (time - this.timeTree[treeKey].offset + begins);
+    }
 
-        let offset = this.timeTree[this.curState].offset - this.stateBegins;
+    fetch(length, tree, tmpstep, tmpactc, begins)
+    {
+        if(!tree)
+        {
+            tree = this.curState;
+        }
+
+        var results = {};
+        if(tmpstep == undefined) {tmpstep = this.curStep;}
+        tmpactc = tmpactc || JSON.parse(JSON.stringify(this.curActionCnt));
+        var curline = this.timeTree[tree].timeline;
+
+        if(begins == undefined) {begins = this.stateBegins;}
 
         while(tmpstep < curline.length)
         {
-            if((curline[tmpstep][0] - offset) - this.currentTime > length)
+            if(this.treeGlobalTime(tree, curline[tmpstep][0], begins) - this.currentTime > length)
             {
                 break;
             }
@@ -453,13 +837,19 @@ class Timeline
             tmpactc[cact] += 1;
             results[`${cact}_${tmpactc[cact]}`] = {
                 'displayName': this.actions[cact].displayName,
-                'time': length - ((curline[tmpstep][0] - offset) - this.currentTime),
+                'time': length - (this.treeGlobalTime(tree, curline[tmpstep][0], begins) - this.currentTime),
                 'count': tmpactc[cact],
                 'color': this.actions[cact].color,
                 'sfx': this.actions[cact].alertAudioNode,
                 'countdown': this.actions[cact].countdown
             }
             tmpstep += 1;
+        }
+
+        // Handle following timelines
+        if(this.timeTree[tree].following[1])
+        {
+            Object.assign(results, this.fetch(length, this.timeTree[tree].following[1], 0, tmpactc, this.treeGlobalTime(tree, this.timeTree[tree].following[0], begins)));
         }
 
         return results;
@@ -471,6 +861,15 @@ class Timeline
         if(this.currentTime > this.totalTime)
         {
             this.currentTime = this.totalTime;
+        }
+
+        // Handle following timelines
+        while(this.treeGlobalTime(this.curState, this.timeTree[this.curState].following[0], this.stateBegins) < this.currentTime && this.timeTree[this.curState].following[1])
+        {
+            this.curState = this.timeTree[this.curState].following[1];
+            this.stateBegins = this.currentTime;
+            this.curStep = 0;
+            console.log(`${this.currentTime.toFixed(2)}: Timeline switched to following ${this.curState} timeline.`);
         }
 
         let offset = this.timeTree[this.curState].offset - this.stateBegins;
