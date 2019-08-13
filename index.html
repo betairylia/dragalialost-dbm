@@ -153,11 +153,16 @@
             }
         }
         
+        let lastTime = Date.now();
+
         function upd()
         {
+            let nowTime = Date.now();
+            let dt = nowTime - lastTime;
+            lastTime = nowTime;
             if(this.playing)
             {
-                tl.update(1 / 60.0);
+                tl.update(dt / 1000.0);
             }
             renderer.render();
             requestAnimationFrame(upd);
