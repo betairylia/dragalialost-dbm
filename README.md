@@ -1,2 +1,2 @@
 # dragalialost-dbm
-"Deadly boss mods" and timeline maker for dragalialost
+A script based timer for deadly bosses in dragalia lost.
