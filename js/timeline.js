@@ -1,7 +1,91 @@
+class CSVIO
+{
+    constructor()
+    {
+        this.lines = [];
+        this.maxchar = [];
+    }
+
+    padString(str, pad)
+    {
+        return ('                                                  ' + str).slice(-pad);
+    }
+
+    submitLine(line, autoPad = true)
+    {
+        if(autoPad)
+        {
+            let c = 0;
+            for(let l of line)
+            {
+                if((c+1) > this.maxchar.length)
+                {
+                    this.maxchar.push(0);
+                }
+                this.maxchar[c] = l.length > this.maxchar[c] ? l.length : this.maxchar[c];
+                c += 1;
+            }
+        }
+        this.lines.push(line);
+    }
+
+    get()
+    {
+        console.log(this.maxchar);
+        var result = "";
+        for(let line of this.lines)
+        {
+            var c = 0;
+            for(c = 0; c < (line.length-1); c++)
+            {
+                if(line[c].length < this.maxchar[c])
+                {
+                    result += `${this.padString(line[c], this.maxchar[c])}, `;
+                }
+                else
+                {
+                    result += `${line[c]}, `;
+                }
+            }
+            if(line[c].length < this.maxchar[c])
+            {
+                result += `${this.padString(line[c], this.maxchar[c])}`;
+            }
+            else
+            {
+                result += line[c];
+            }
+            result += "\n";
+        }
+
+        return result;
+    }
+
+    fromString(str)
+    {
+        var result = [];
+        var lines = str.split('\n');
+        for(let line of lines)
+        {
+            var words = line.split(',');
+            var res = []
+            for(let word of words)
+            {
+                res.push(word.trim());
+            }
+            result.push(res);
+        }
+
+        return result;
+    }
+}
+
 class Timeline
 {
     constructor(initName)
     {
+        this.version = "0.1";
+
         this.mainColor = "lightcoral";
         this.totalTime = 300; //5min
         this.name = "Untitled Run";
@@ -21,6 +105,10 @@ class Timeline
         if(this[`${initName}_test`])
         {
             this[`${initName}_test`].bind(this).apply();
+        }
+        else
+        {
+            this.fromString(custom_str[parseInt(initName)]);
         }
         this.reset();
     }
@@ -230,7 +318,7 @@ class Timeline
             'en-us': "High Mercury",
             'zh-cn': "真墨丘利",
         }
-        this.mainColor = "deepskyblue";
+        this.mainColor = "#7bbfea";
 
         this.actions = {
             'boom': {
@@ -249,8 +337,8 @@ class Timeline
                     'zh-cn': "下砸",
                 },
                 'color':        "cadetblue",
-                'alertSFX':     null,
-                'countdown':    0,
+                'alertSFX':     'taunt',
+                'countdown':    4,
                 'shortcut':     '2',
             },
             'dash': {
@@ -269,8 +357,9 @@ class Timeline
                     'zh-cn': "甩尾",
                 },
                 'color':        "blueviolet",
-                'alertSFX':     null,
-                'countdown':    0,
+                'alertSFX':     'avoid',
+                'countdown':    3,
+                'countdownFX':  false,
                 'shortcut':     '4',
             },
             'spot': {
@@ -283,13 +372,33 @@ class Timeline
                 'countdown':    0,
                 'shortcut':     '5',
             },
+            'spot2': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "水弹 (x2)",
+                },
+                'color':        "dodgerblue",
+                'alertSFX':     'two_waterballs',
+                'countdown':    4,
+                'shortcut':     'a',
+            },
+            'spot3': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "水弹 (x3)",
+                },
+                'color':        "dodgerblue",
+                'alertSFX':     'three_waterballs',
+                'countdown':    4,
+                'shortcut':     's',
+            },
             'wash': {
                 'displayName':  {
                     'en-us': "",
                     'zh-cn': "洗衣机",
                 },
                 'color':        "blue",
-                'alertSFX':     null,
+                'alertSFX':     'avoid',
                 'countdown':    4,
                 'shortcut':     '6',
             },
@@ -309,8 +418,8 @@ class Timeline
                     'zh-cn': "瀑布",
                 },
                 'color':        "aqua",
-                'alertSFX':     null,
-                'countdown':    5,
+                'alertSFX':     'waterfall',
+                'countdown':    7,
                 'shortcut':     '8',
             },
             'lock': {
@@ -319,8 +428,8 @@ class Timeline
                     'zh-cn': "水之牢笼",
                 },
                 'color':        "steelblue",
-                'alertSFX':     null,
-                'countdown':    3,
+                'alertSFX':     'ready_burst',
+                'countdown':    8,
                 'shortcut':     '9',
             },
             'chas': {
@@ -329,7 +438,7 @@ class Timeline
                     'zh-cn': "追踪水球",
                 },
                 'color':        "royalblue",
-                'alertSFX':     null,
+                'alertSFX':     'chasing',
                 'countdown':    2,
                 'shortcut':     '0',
             },
@@ -339,8 +448,8 @@ class Timeline
                     'zh-cn': "增殖水泡",
                 },
                 'color':        "powderblue",
-                'alertSFX':     null,
-                'countdown':    5,
+                'alertSFX':     'avoid',
+                'countdown':    0,
                 'shortcut':     'q',
             },
             'mobs': {
@@ -369,14 +478,14 @@ class Timeline
         this.addActionInvMSec('init', 4, 52, 'down');
         this.addActionInvMSec('init', 4, 49, 'dash');
         this.addActionInvMSec('init', 4, 45, 'tail');
-        this.addActionInvMSec('init', 4, 41, 'spot');
+        this.addActionInvMSec('init', 4, 41, 'spot2');
         this.addActionInvMSec('init', 4, 37, 'spot');
         this.addActionInvMSec('init', 4, 30, 'wash');
         this.addActionInvMSec('init', 4, 22, 'bubb');
         this.addActionInvMSec('init', 4, 20, 'down');
         this.addActionInvMSec('init', 4, 18, 'dash');
         this.addActionInvMSec('init', 4, 13, 'tail');
-        this.addActionInvMSec('init', 4, 10, 'spot');
+        this.addActionInvMSec('init', 4, 10, 'spot2');
         this.addActionInvMSec('init', 4,  5, 'spot');
         this.addActionInvMSec('init', 4,  1, 'fall');
         this.addActionInvMSec('init', 3, 53, 'lock');
@@ -384,11 +493,11 @@ class Timeline
         this.addActionInvMSec('init', 3, 44, 'down');
         this.addActionInvMSec('init', 3, 41, 'dash');
         this.addActionInvMSec('init', 3, 36, 'tail');
-        this.addActionInvMSec('init', 3, 32, 'spot');
+        this.addActionInvMSec('init', 3, 32, 'spot2');
         this.addActionInvMSec('init', 3, 28, 'spot');
         this.addActionInvMSec('init', 3, 22, 'wash');
         this.addActionInvMSec('init', 3, 11, 'spre');
-        this.addActionInvMSec('init', 3,  4, 'spot');
+        this.addActionInvMSec('init', 3,  4, 'spot3');
         this.addActionInvMSec('init', 3,  1, 'spot');
         this.addActionInvMSec('init', 2, 57, 'spot');
         this.addActionInvMSec('init', 2, 49, 'wash');
@@ -397,7 +506,7 @@ class Timeline
         this.addActionInvMSec('init', 2, 35, 'down');
         this.addActionInvMSec('init', 2, 33, 'dash');
         this.addActionInvMSec('init', 2, 28, 'tail');
-        this.addActionInvMSec('init', 2, 25, 'spot');
+        this.addActionInvMSec('init', 2, 25, 'spot2');
         this.addActionInvMSec('init', 2, 22, 'spot');
         this.addActionInvMSec('init', 2, 17, 'fall');
         this.addActionInvMSec('init', 2,  8, 'spre');
@@ -406,12 +515,12 @@ class Timeline
         this.addActionInvMSec('p2', 3,  0, 'brke');
         this.addActionInvMSec('p2', 2, 52, 'spre');
         this.addActionInvMSec('p2', 2, 48, 'chas');
-        this.addActionInvMSec('p2', 2, 43, 'spot');
+        this.addActionInvMSec('p2', 2, 43, 'spot2');
         this.addActionInvMSec('p2', 2, 41, 'spot');
         this.addActionInvMSec('p2', 2, 35, 'down');
         this.addActionInvMSec('p2', 2, 33, 'dash');
         this.addActionInvMSec('p2', 2, 28, 'tail');
-        this.addActionInvMSec('p2', 2, 24, 'spot');
+        this.addActionInvMSec('p2', 2, 24, 'spot2');
         this.addActionInvMSec('p2', 2, 21, 'spot');
         this.addActionInvMSec('p2', 2, 16, 'wash');
         this.addActionInvMSec('p2', 2,  6, 'bubb');
@@ -426,7 +535,13 @@ class Timeline
         this.addActionInvMSec('p2', 1, 21, 'lock');
         this.addActionInvMSec('p2', 1, 11, 'spre');
         this.addActionInvMSec('p2', 1,  6, 'chas');
-        
+        this.addActionInvMSec('p2', 1,  4, 'spot2');
+        this.addActionInvMSec('p2', 1,  0, 'spot');
+        this.addActionInvMSec('p2', 0, 55, 'down');
+        this.addActionInvMSec('p2', 0, 53, 'dash');
+        this.addActionInvMSec('p2', 0, 47, 'tail');
+        this.addActionInvMSec('p2', 0, 43, 'spot2');
+        this.addActionInvMSec('p2', 0, 40, 'spot');
 
         // this.addActionInvMSec('init', , , '');
         // this.addActionInvMSec('init', , , '');
@@ -443,7 +558,7 @@ class Timeline
             'en-us': "High Jupiter",
             'zh-cn': "真朱庇特",
         }
-        this.mainColor = "gold";
+        this.mainColor = "#ffc20e";
 
         this.actions = {
             'boom': {
@@ -708,6 +823,164 @@ class Timeline
         // this.addActionInvMSec('init', , , '');
     }
 
+    getString(padLen)
+    {
+        var result = `VERSION, ${this.version}\n*** Basic Info ***\n`;
+        var basicInfo = new CSVIO();
+
+        basicInfo.submitLine(["", "EN", "ZH", "JP"])
+        basicInfo.submitLine(["Name", this.name['en-us'], this.name['zh-cn']])
+        basicInfo.submitLine(["Main color", this.mainColor]);
+
+        result += basicInfo.get() + "\n"
+        result += "*** Actions ***\n";
+
+        var actStr = new CSVIO();
+        actStr.submitLine(['action', 'Name EN', 'color', 'alert SoundFX', 'countdown', 'shortcut', 'Name ZH', 'NAME JP'])
+
+        for(var act in this.actions)
+        {
+            if(this.actions.hasOwnProperty(act))
+            {
+                var actObj = this.actions[act];
+                actStr.submitLine([act, actObj.displayName['en-us'], actObj.color, actObj.alertSFX || "", `${actObj.countdown}`, actObj.shortcut, actObj.displayName['zh-cn'], ""]);
+            }
+        }
+
+        result += actStr.get() + "\n"
+        result += "*** Timelines ***\n";
+
+        var treeStr = new CSVIO()
+        treeStr.submitLine(['skill', 'branch', 'name', 'min', 'sec'])
+        treeStr.submitLine(['event', 'from', 'to', 'min', 'sec', 'event type', 'ref min', 'ref sec', 'display name'])
+
+        for(var tree in this.timeTree)
+        {
+            if(this.timeTree.hasOwnProperty(tree))
+            {
+                var treeObj = this.timeTree[tree];
+                treeStr.submitLine([""]);
+                treeStr.submitLine([`## Tree name = ${tree}`], false);
+
+                for(var act of treeObj.timeline)
+                {
+                    var remains = this.totalTime - act[0];
+                    treeStr.submitLine(["skill", tree, act[1], `${Math.floor(remains / 60).toFixed(0)}`, `${(remains % 60).toFixed(1)}`]);
+                }
+
+                for(var evt in treeObj.actions)
+                {
+                    if(treeObj.actions.hasOwnProperty(evt))
+                    {
+                        for(var evtObj of treeObj.actions[evt])
+                        {
+                            var remains = this.totalTime - evtObj[0];
+                            var oremains = this.totalTime - this.timeTree[evtObj[1]].offset;
+                            treeStr.submitLine(["event", tree, evtObj[1], `${Math.floor(remains / 60).toFixed(0)}`, `${(remains % 60).toFixed(1)}`, evt, `${Math.floor(oremains / 60).toFixed(0)}`, `${(oremains % 60).toFixed(1)}`, this.timeTree[evtObj[1]].displayName]);
+                        }
+                    }
+                }
+
+                if(treeObj.following[1])
+                {
+                    let evtObj = treeObj.following;
+                    var remains = this.totalTime - evtObj[0];
+                    var oremains = this.totalTime - this.timeTree[evtObj[1]].offset;
+                    treeStr.submitLine(["event", tree, evtObj[1], `${Math.floor(remains / 60).toFixed(0)}`, `${(remains % 60).toFixed(1)}`, 'follows', `${Math.floor(oremains / 60).toFixed(0)}`, `${(oremains % 60).toFixed(1)}`, this.timeTree[evtObj[1]].displayName])
+                }
+            }
+        }
+
+        result += treeStr.get() + "\n"
+
+        return result;
+    }
+
+    fromString(str)
+    {
+        var parser = new CSVIO();
+        var file = parser.fromString(str);
+
+        var i = 0;
+        
+        // Check version
+        if(this.version != file[i++][1]) { alert(`Wrong file version! Current version = ${this.version}`); return; }
+        
+        // Basic INFO header
+        i += 2;
+        this.name = {
+            'en-us': file[i][1],
+            'zh-cn': file[i][2]
+        }
+        i++;
+        this.mainColor = file[i++][1]
+
+        // Actions
+        i += 3;
+        this.actions = {};
+        while(true)
+        {
+            var line = file[i++];
+
+            // block ends
+            if(line.length <= 1) { break; }
+            
+            this.actions[line[0]] = {
+                'displayName': {
+                    'en-us': line[1],
+                    'zh-cn': line[6],
+                },
+                'color': line[2],
+                'alertSFX': line[3].length > 0 ? line[3] : null,
+                'countdown': parseInt(line[4]),
+                'shortcut': line[5]
+            }
+        }
+
+        // Timeline
+        i += 4;
+        while(i < file.length)
+        {
+            // read tree
+            i += 1
+            while(i < file.length)
+            {
+                var line = file[i++];
+
+                // block ends
+                if(line.length <= 1) { break; }
+                if(this.timeTree.hasOwnProperty(line[1]))
+                {
+                    if(line[0] == 'skill')
+                    {
+                        this.addActionInvMSec(line[1], parseInt(line[3]), parseFloat(line[4]), line[2]);
+                    }
+                    else if(line[0] == 'event')
+                    {
+                        if(line[5] == 'follows')
+                        {
+                            this.followsInvMSec(line[1], line[2], line[8], parseInt(line[3]), parseFloat(line[4]), parseInt(line[6]), parseFloat(line[7]));
+                        }
+                        else
+                        {
+                            this.addEventInvMSec(line[1], line[2], line[8], line[5], parseInt(line[3]), parseFloat(line[4]), parseInt(line[6]), parseFloat(line[7]));
+                        }
+                    }
+                    else
+                    {
+                        alert(`Unknown action type ${line[0]} at line ${i} !`);
+                        return;
+                    }
+                }
+                else
+                {
+                    alert(`Bad tree structure (branch does not exist) on line ${i} !`);
+                    return;
+                }
+            }
+        }
+    }
+
     adjust(dt)
     {
         this.currentTime += dt;
@@ -726,7 +999,7 @@ class Timeline
             this.curActionCnt[action] = 0;
             if(this.actions[action].alertSFX != null)
             {
-                this.actions[action].alertAudioNode = new Audio('audio/' + this.actions[action].alertSFX);
+                this.actions[action].alertAudioNode = new Audio('audio/' + document.locale + '/' + this.actions[action].alertSFX + '.mp3');
             }
             console.log(this.actions[action]);
         }
@@ -841,7 +1114,8 @@ class Timeline
                 'count': tmpactc[cact],
                 'color': this.actions[cact].color,
                 'sfx': this.actions[cact].alertAudioNode,
-                'countdown': this.actions[cact].countdown
+                'countdown': this.actions[cact].countdown,
+                'countdownFX': this.actions[cact].countdownFX,
             }
             tmpstep += 1;
         }

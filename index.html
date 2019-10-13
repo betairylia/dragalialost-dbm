@@ -7,6 +7,8 @@
     <title>Dragalia Lost timelines</title>
 
     <link rel = "stylesheet" type = "text/css" href = "loading-bar/dist/loading-bar.css"/>
+    <link rel = "stylesheet" type = "text/css" href = "UIDesign/css/normalize.min.css">
+    <link rel = "stylesheet" type = "text/css" href = "UIDesign/css/main.css">
     <link rel = "stylesheet" type = "text/css" href = "style.css"/>
     <script type = "text/javascript" src = "loading-bar/dist/loading-bar.js"></script>
 
@@ -28,7 +30,11 @@
 
     <template id = 'basicTimer'>
         <li class = 'timer basicTimer'>
-            <div class = 'ld' style = "width: 100%; height: fit-content;"></div>
+            <!-- <div class = 'ld' style = "width: 100%; height: fit-content;"></div> -->
+            <div class = 'timerBar'>
+                <div class = 'bar'></div>
+                <div class = 'bg'></div>
+            </div>
             <div class = 'labels'>
                 <div class = 'name_label'></div>
                 <div class = 'time_label'></div>
@@ -45,7 +51,7 @@
                 (R) 
                 <input id = "min" type = "text" size = "1"/>
                 m
-                <input id = "sec" type = "text" size = "1"/>
+                <input id = "sec" type = "text" size = "1" style = "width: 2.2em;"/>
                 s
             </p>
             <p>
@@ -67,33 +73,62 @@
         </div>
     </template>
 
+    <div class = 'overlay' id = 'import-export'>
+        <textarea id = 'stringIOBox'></textarea>
+        <div id = 'buttons'>
+            <button onclick = "ImportText()" class = "BTNred autoLoc_importNew" style = "flex: 1;"> Import from text </button>
+            <button onclick = "HideOverlay()" class = "BTNred autoLoc_close" style = "flex: 1;"> Close </button>
+        </div>
+    </div>
+
     <div id = 'mainFrame'>
-        <div id = 'menu' class = 'framePanel'>
-            <p style = "display: flex; justify-content: space-between;">
-                语言 / Languages / 言語
-                <select id = "language" style = "width: 10em; height: 2em;" onchange = "resetAll();">
-                    <option value = "en-us">English</option>
-                    <option value = "zh-cn" selected>中文（简体）</option>
-                </select>
-            </p>
-            <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <button onclick = "resetAll()" style = "height: 3em; width: 15em;" class = "autoLoc_reload"> Reload everything </button>
-                <span><input type="checkbox" id="enableAudio" class = "autoLoc_audio" onclick="var cb = document.getElementById('enableAudio'); enableSound = cb.checked;"/> Audio</span>
-                <select id = "bossName" style = "height: 2em; width: 8em;" onchange = "resetAll();">
-                    <option class = "autoLoc_HBH" value = "HBH">High Brunhilda</option>
-                    <option class = "autoLoc_HMC" value = "HMC">High Mercury</option>
-                    <option class = "autoLoc_HJP" value = "HJP" selected>High Jupiter</option>
-                </select>
-            </p>
-            <p style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <button onclick = "playing = !playing;" style = "height: 2em; min-width: 8em;" class = "autoLoc_play-pause"> Pause / Play </button>
-                <button onclick = "tl.reset(); playing = false;" style = "height: 2em; min-width: 8em;" class = "autoLoc_stop"> Stop </button>
-                <button onclick = "tl.adjust(-0.5);" style = "height: 2em; min-width: 8em;"> + 0.5s (←) </button>
-                <button onclick = "tl.adjust(0.5);" style = "height: 2em; min-width: 8em;"> - 0.5s (→) </button>
-            </p>
-            <div id = "timeline_preview" class = "long-preview">
-                <p style = "text-align: center;" class = "autoLoc_timeline-preview">Timeline preview</p>
-                <div id = "timeline_container"></div>
+        <div class = 'leftcontainer'>
+            <div class = 'fixwrapper'>
+                <div id = 'menu' class = 'mainMenu'>
+                    <div style = "padding: 10px 0px; display: flex; justify-content: space-between;">
+                        <button onclick = "resetAll()" class = "BTNred autoLoc_reload" style = "flex: 1;"> Reload everything </button>
+                        <button id = "btnAudio" class = "BTNred autoLoc_audioOff" onclick = "enableSound = !enableSound; updateAudioButton()" style = "flex: 1;"> Audio </button>
+                    </div>
+                    <form id = 'mainMenu'>
+                        <div class = 'smallform'>
+                            <label for = 'language'>语言 / Languages / 言語</label>
+                            <select id = "language" name = 'language' onchange = "resetAll();">
+                                <option value = "en-us">English</option>
+                                <option value = "zh-cn" selected>中文（简体）</option>
+                            </select>
+                        </div>
+                        <div class = 'smallform' style = 'margin-right: 0;'>
+                            <label for = 'boss'>Boss:</label>
+                            <select id = 'boss' name = 'boss' onchange = "resetAll();">
+                                <option class = "autoLoc_HBH" value = "HBH">High Brunhilda</option>
+                                <option class = "autoLoc_HMC" value = "HMC">High Mercury</option>
+                                <option class = "autoLoc_HJP" value = "HJP" selected>High Jupiter</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+    
+                <div class = "controlCenter">
+                    <div class = "containerTitle autoLoc_controlPanel">控制面板</div>
+                    <div class = "containerBox">
+                        <button onclick = "playing = !playing;" class = "BTNwhite autoLoc_play-pause"> Pause / Play </button>
+                        <button onclick = "tl.reset(); playing = false;" class = "BTNwhite autoLoc_stop"> Stop </button>
+                        <button onclick = "tl.adjust(-0.5);" class = "BTNwhite"> + 0.5s (←) </button>
+                        <button onclick = "tl.adjust(0.5);" class = 'BTNwhite'> - 0.5s (→) </button>
+                        <button onclick = "ShowOverlay();" class = 'BTNwhite autoLoc_save-load'> Import / Export </button>
+                        <!-- <span><input type="checkbox" id="enableAudio" class = "autoLoc_audio" onclick="var cb = document.getElementById('enableAudio'); enableSound = cb.checked;"/> Audio</span> -->
+                    </div>
+                </div>
+    
+                <div class = "detailCenter">
+                    <div class="autoLoc_timeline-preview containerTitle">Timeline preview</div>
+                    <div id = "timeline_container" class="containerBox long-preview">
+                        <!-- <div class="oneline">
+                            <p>初始状太（标准：5m 0s）</p> <input id="BTNred" type="submit" value="RESET">
+                        </div>
+                        <div class="innerform">表格在这里</div> -->
+                    </div>
+                </div>
             </div>
         </div>
         <div id = 'timers'>
@@ -121,6 +156,11 @@
 
         var playing = false;
 
+        var custom_cnt = 0;
+        var custom_str = [];
+
+        var overlay = document.querySelector('div.overlay');
+
         function resetAll()
         {
             setLocale(document.getElementById('language').value);
@@ -130,9 +170,43 @@
             document.getElementById("mainTimerContainer").innerHTML = "";
             document.getElementById("upcomingTimerContainer").innerHTML = "";
 
-            tl = new Timeline(document.getElementById("bossName").value);
+            tl = new Timeline(document.getElementById("boss").value);
             renderer = new Renderer("mainTimerContainer", "subTimerContainer", "upcomingTimerContainer", tl);
             tlRender = new TLRenderer("timeline_container", "timelineEventItem", "timelineTreeBlock", tl);
+
+            // Set color
+            let root = document.documentElement;
+            root.style.setProperty('--main-color', tl.mainColor);
+            root.style.setProperty('--dark-main-color', LightenDarkenColor(tl.mainColor, -60));
+            updateAudioButton();
+        }
+
+        function ImportText()
+        {
+            var str = document.getElementById('stringIOBox').value;
+            custom_str.push(str);
+            custom_cnt += 1;
+
+            tl.fromString(str);
+
+            var option = document.createElement("option");
+            option.text = `${tl.name[document.locale]}-${custom_cnt}`;
+            option.value = `${custom_cnt - 1}`;
+            option.selected = true;
+            document.querySelector("select#boss").add(option);
+
+            resetAll();
+        }
+
+        function HideOverlay()
+        {
+            overlay.style.display = 'none';
+        }
+
+        function ShowOverlay()
+        {
+            document.getElementById('stringIOBox').value = tl.getString();
+            overlay.style.display = 'flex';
         }
 
         var r = document.getElementById("subTimerContainer");

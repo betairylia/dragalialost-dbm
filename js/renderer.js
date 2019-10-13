@@ -1,9 +1,4 @@
 var enableSound = false;
-var countdowns = [];
-for(var i = 0; i < 5; i++)
-{
-    countdowns.push(new Audio(`audio/zh${i+1}.mp3`));
-}
 
 class Timebar
 {
@@ -19,15 +14,36 @@ class Timebar
             this.animation = options.animation;
         }
 
-        this.dom.querySelector(".ld").id = name + "_ldbar";
+        if (this.dom.querySelector(".ld"))
+        {
+            this.useLD = true;
+            this.dom.querySelector(".ld").id = name + "_ldbar";
+        }
+        else
+        {
+            this.useLD = false;
+            this.dom.querySelector(".timerBar").id = name + "_tbar";
+        }
 
         destElem.appendChild(this.dom);
         // this.dom = destElem.lastElementChild;
         this.dom.id = name;
         this.dom.timer = this;
 
-        this.ldBar = new ldBar(this.dom.querySelector("#" + name + "_ldbar"), ldBarOpt);
-        this.ldbarDom = this.dom.querySelector("#" + name + "_ldbar");
+        if (this.useLD)
+        {
+            this.ldBar = new ldBar(this.dom.querySelector("#" + name + "_ldbar"), ldBarOpt);
+            this.ldbarDom = this.dom.querySelector("#" + name + "_ldbar");
+        }
+        else
+        {
+            this.tbarDom = this.dom.querySelector("#" + name + "_tbar");
+            this.tbar = this.tbarDom.querySelector(".bar");
+            this.tbg = this.tbarDom.querySelector(".bg");
+
+            // Set color, etc.
+            this.tbar.style.backgroundColor = options.color;
+        }
 
         this.labelTime = this.dom.querySelector(".time_label");
         this.labelName = this.dom.querySelector(".name_label");
@@ -45,7 +61,6 @@ class Timebar
         this.currentCountDown = 20;
         this.alertPlayed = false;
 
-
         if (options)
         {
             if (options.initialTime)
@@ -56,7 +71,7 @@ class Timebar
             {
                 this.displayName = options.displayName;
             }
-            if (options.viewBox)
+            if (options.viewBox && this.useLD)
             {
                 this.ldbarDom.getElementsByTagName("svg")[0].setAttribute("viewBox", options.viewBox);
             }
@@ -76,6 +91,10 @@ class Timebar
             {
                 this.countdown = options.countdown;
             }
+            if (options.countdownFX)
+            {
+                this.countdownFX = options.countdownFX;
+            }
             // TODO
         }
 
@@ -90,7 +109,15 @@ class Timebar
         {
             this.timeElapsed = this.timeMax;
         }
-        this.ldBar.set(this.timeElapsed / this.timeMax * 100.0);
+
+        if(this.useLD)
+        {
+            this.ldBar.set(this.timeElapsed / this.timeMax * 100.0);
+        }
+        else
+        {
+            this.tbar.style.width = `${this.timeElapsed / this.timeMax * 100.0}%`;
+        }
 
         this.updateTimeLabel();
     }
@@ -140,9 +167,9 @@ class Timebar
         if(timeRemain < this.countdown && (second + 1) != this.currentCountDown)
         {
             this.currentCountDown = second + 1;
-            if(enableSound)
+            if(enableSound && this.countdownFX)
             {
-                countdowns[second].play();
+                renderer.countdowns[second].play();
             }
         }
 
@@ -194,6 +221,12 @@ class Renderer
         this.eBig = document.getElementById(this.idBig);
         this.eSub = document.getElementById(this.idSub);
         this.eUpc = document.getElementById(this.idUpcoming);
+
+        this.countdowns = [];
+        for(var i = 0; i < 10; i++)
+        {
+            this.countdowns.push(new Audio(`audio/${document.locale}/${i+1}.mp3`));
+        }
 
         this.totalTimers = 0;
 
@@ -252,6 +285,7 @@ class Renderer
                 "alert": timer.sfx,
                 "countdown": timer.countdown,
                 "color": timer.color,
+                "countdownFX": ((typeof timer.countdownFX !== "undefined") ? timer.countdownFX : true),
             }
         )
         
@@ -420,6 +454,7 @@ class Renderer
                     "alert": timer.alertAudio,
                     "countdown": timer.countdown,
                     "color": timer.color,
+                    "countdownFX": timer.countdownFX,
                 }
             );
             this.queues[dest].timers.push(newTimer);
@@ -484,7 +519,7 @@ class TLRenderer
         let blockDOM = blockTemplate.content.cloneNode(true).children[0];
 
         blockDOM.id = tree;
-        blockDOM.querySelector(".title").innerText = curTree.displayName;
+        // blockDOM.querySelector(".title").innerText = curTree.displayName;
 
         entry.appendChild(blockDOM);
         let blockEntry = blockDOM.querySelector(".timeline-content-list");
@@ -598,4 +633,89 @@ function setLocaleResNode(DOM)
             setLocaleResNode(child);
         }
     }
+}
+
+function updateAudioButton()
+{
+    btn = document.getElementById('btnAudio');
+    btn.classList.remove("BTNred");
+    btn.classList.remove("BTNwhite");
+    btn.classList.remove("autoLoc_audioOn");
+    btn.classList.remove("autoLoc_audioOff");
+    btn.classList.add(enableSound ? "autoLoc_audioOn" : "autoLoc_audioOff");
+    btn.classList.add(enableSound ? "BTNred" : "BTNwhite");
+    btn.innerText = loc(enableSound ? "audioOn" : "audioOff");
+    console.log(btn.classList);
+}
+
+// https://css-tricks.com/snippets/javascript/lighten-darken-color/
+// Don't use this, it is shit (
+function LightenDarkenColor(col, amt) 
+{  
+    let res = colourNameToHex(col)
+    if(res)
+    {
+        col = res;
+    }
+
+    var usePound = false;
+  
+    if (col[0] == "#") {
+        col = col.slice(1);
+        usePound = true;
+    }
+ 
+    var num = parseInt(col,16);
+ 
+    var r = (num >> 16) + amt;
+ 
+    if (r > 255) r = 255;
+    else if  (r < 0) r = 0;
+ 
+    var b = ((num >> 8) & 0x00FF) + amt;
+ 
+    if (b > 255) b = 255;
+    else if  (b < 0) b = 0;
+ 
+    var g = (num & 0x0000FF) + amt;
+ 
+    if (g > 255) g = 255;
+    else if (g < 0) g = 0;
+ 
+    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+}
+
+// https://stackoverflow.com/questions/1573053/javascript-function-to-convert-color-names-to-hex-codes
+// LOL
+function colourNameToHex(colour)
+{
+    var colours = {"aliceblue":"#f0f8ff","antiquewhite":"#faebd7","aqua":"#00ffff","aquamarine":"#7fffd4","azure":"#f0ffff",
+    "beige":"#f5f5dc","bisque":"#ffe4c4","black":"#000000","blanchedalmond":"#ffebcd","blue":"#0000ff","blueviolet":"#8a2be2","brown":"#a52a2a","burlywood":"#deb887",
+    "cadetblue":"#5f9ea0","chartreuse":"#7fff00","chocolate":"#d2691e","coral":"#ff7f50","cornflowerblue":"#6495ed","cornsilk":"#fff8dc","crimson":"#dc143c","cyan":"#00ffff",
+    "darkblue":"#00008b","darkcyan":"#008b8b","darkgoldenrod":"#b8860b","darkgray":"#a9a9a9","darkgreen":"#006400","darkkhaki":"#bdb76b","darkmagenta":"#8b008b","darkolivegreen":"#556b2f",
+    "darkorange":"#ff8c00","darkorchid":"#9932cc","darkred":"#8b0000","darksalmon":"#e9967a","darkseagreen":"#8fbc8f","darkslateblue":"#483d8b","darkslategray":"#2f4f4f","darkturquoise":"#00ced1",
+    "darkviolet":"#9400d3","deeppink":"#ff1493","deepskyblue":"#00bfff","dimgray":"#696969","dodgerblue":"#1e90ff",
+    "firebrick":"#b22222","floralwhite":"#fffaf0","forestgreen":"#228b22","fuchsia":"#ff00ff",
+    "gainsboro":"#dcdcdc","ghostwhite":"#f8f8ff","gold":"#ffd700","goldenrod":"#daa520","gray":"#808080","green":"#008000","greenyellow":"#adff2f",
+    "honeydew":"#f0fff0","hotpink":"#ff69b4",
+    "indianred ":"#cd5c5c","indigo":"#4b0082","ivory":"#fffff0","khaki":"#f0e68c",
+    "lavender":"#e6e6fa","lavenderblush":"#fff0f5","lawngreen":"#7cfc00","lemonchiffon":"#fffacd","lightblue":"#add8e6","lightcoral":"#f08080","lightcyan":"#e0ffff","lightgoldenrodyellow":"#fafad2",
+    "lightgrey":"#d3d3d3","lightgreen":"#90ee90","lightpink":"#ffb6c1","lightsalmon":"#ffa07a","lightseagreen":"#20b2aa","lightskyblue":"#87cefa","lightslategray":"#778899","lightsteelblue":"#b0c4de",
+    "lightyellow":"#ffffe0","lime":"#00ff00","limegreen":"#32cd32","linen":"#faf0e6",
+    "magenta":"#ff00ff","maroon":"#800000","mediumaquamarine":"#66cdaa","mediumblue":"#0000cd","mediumorchid":"#ba55d3","mediumpurple":"#9370d8","mediumseagreen":"#3cb371","mediumslateblue":"#7b68ee",
+    "mediumspringgreen":"#00fa9a","mediumturquoise":"#48d1cc","mediumvioletred":"#c71585","midnightblue":"#191970","mintcream":"#f5fffa","mistyrose":"#ffe4e1","moccasin":"#ffe4b5",
+    "navajowhite":"#ffdead","navy":"#000080",
+    "oldlace":"#fdf5e6","olive":"#808000","olivedrab":"#6b8e23","orange":"#ffa500","orangered":"#ff4500","orchid":"#da70d6",
+    "palegoldenrod":"#eee8aa","palegreen":"#98fb98","paleturquoise":"#afeeee","palevioletred":"#d87093","papayawhip":"#ffefd5","peachpuff":"#ffdab9","peru":"#cd853f","pink":"#ffc0cb","plum":"#dda0dd","powderblue":"#b0e0e6","purple":"#800080",
+    "rebeccapurple":"#663399","red":"#ff0000","rosybrown":"#bc8f8f","royalblue":"#4169e1",
+    "saddlebrown":"#8b4513","salmon":"#fa8072","sandybrown":"#f4a460","seagreen":"#2e8b57","seashell":"#fff5ee","sienna":"#a0522d","silver":"#c0c0c0","skyblue":"#87ceeb","slateblue":"#6a5acd","slategray":"#708090","snow":"#fffafa","springgreen":"#00ff7f","steelblue":"#4682b4",
+    "tan":"#d2b48c","teal":"#008080","thistle":"#d8bfd8","tomato":"#ff6347","turquoise":"#40e0d0",
+    "violet":"#ee82ee",
+    "wheat":"#f5deb3","white":"#ffffff","whitesmoke":"#f5f5f5",
+    "yellow":"#ffff00","yellowgreen":"#9acd32"};
+
+    if (typeof colours[colour.toLowerCase()] != 'undefined')
+        return colours[colour.toLowerCase()];
+
+    return false;
 }

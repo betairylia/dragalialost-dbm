@@ -17,7 +17,7 @@ div
 .basicTimer
 {
     list-style: none;
-    height: 2.5em;
+    height: 2.8em;
     width: 100%;
     opacity: 1;
     /* display: flex; */
@@ -67,9 +67,11 @@ div
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    
+    overflow: hidden;
 }
 
-#menu
+.leftcontainer
 {
     -webkit-box-flex: 1;
         -ms-flex: 1 25%;
@@ -230,7 +232,7 @@ div
 #upcomingTimers .basicTimer.first
 {
     width: 110%;
-    height: 3.3em;
+    height: 4.5em;
     /* flex-direction: column-reverse; */
 }
 
@@ -265,6 +267,7 @@ div
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    width: 40%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -338,7 +341,7 @@ div
 .bottom-slide-in
 {
     overflow: hidden;
-    height: 2.5em;
+    height: 2.8em;
     opacity: 0;
     padding-top: 10em;
 }
@@ -380,19 +383,22 @@ div
 .long-preview
 {
     overflow-y: auto;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 400px;
-            flex: 1 400px;
-    background-color: lightgrey;
-    border-radius: 10px;
+    -webkit-box-flex: 1 ;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    /* background-color: lightgrey; */
+    /* border-radius: 10px; */
+    min-height: 200px;
+    max-height: auto;
     padding: 4px;
-    display: -webkit-box;
+    
+    /* display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
-            flex-direction: column;
+            flex-direction: column; */
 }
 
 .timeline-block
@@ -404,23 +410,25 @@ div
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    padding: 3px;
+    padding: 3px 0px 3px 3px;
 }
 
 .timeline-block .title
 {
     -webkit-box-flex: 1;
-        -ms-flex: 1 1.4em;
-            flex: 1 1.4em;
-    padding: 1em 0.2em;
-    margin-right: 3px;
-    background-color: lightgreen;
+        -ms-flex: 1 5px;
+            flex: 1 5px;
+    margin: 0.4em 0;
+    /* min-height: max-content; */
+    /* padding: 1em 0.2em; */
+    /* margin-right: 3px; */
+    background-color: var(--main-color);
     -webkit-writing-mode: vertical-rl;
         -ms-writing-mode: tb-rl;
             writing-mode: vertical-rl;
     -webkit-text-orientation: upright;
             text-orientation: upright;
-    border-radius: 0.3em;
+    border-radius: 0.3em 0 0 0.3em;
 }
 
 .timeline-block .contents
@@ -429,8 +437,8 @@ div
         -ms-flex: 9 100%;
             flex: 9 100%;
     background-color: white;
-    padding: 0.4em 2px;
-    border-radius: 0.3em;    
+    margin: 0.4em 0;
+    border-radius: 0 0.3em 0.3em 0;    
     overflow: auto;
 }
 
@@ -439,7 +447,7 @@ div
     padding: 0;
     margin: 0;
     list-style: none;
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 .timeline-content-list ul
@@ -496,5 +504,67 @@ div
 
 .timeline-content-list ul select
 {
-    width: 10em;
+    width: 12em;
+}
+
+li.basicTimer .timerBar
+{
+    position: relative;
+    min-width: 100%;
+    height: 1em;
+    margin: 5px 0;
+}
+
+li.basicTimer .bar
+{
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    background-color: aquamarine;
+}
+
+li.basicTimer .bg
+{
+    position: absolute;
+    top: 20%;
+    height: 60%;
+    width: 100%;
+    z-index: -1;
+    background-color: lightgray;
+}
+
+.overlay
+{
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 25%;
+    right: 25%;
+
+    border-radius: 1em;
+    border: 3px solid;
+    border-color: #DBDBDB;
+
+    z-index: 100;
+
+    background-color: #f3f3f3;
+    box-shadow: 0px 15px #DBDBDB;
+
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.overlay textarea
+{
+    border-radius: 5px;
+    flex: 1;
+    margin-bottom: 1em;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+.overlay #buttons
+{
+    display: flex;
+    justify-content: space-between;
 }

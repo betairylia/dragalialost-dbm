@@ -11,9 +11,13 @@ localizedStrings = {
         'en-us': 'Reload everything',
         'zh-cn': '重新加载全部内容',
     },
-    'audio': {
-        'en-us': 'Audio',
-        'zh-cn': '声音',
+    'audioOff': {
+        'en-us': 'Audio (Current = off)',
+        'zh-cn': '声音 （已关闭）',
+    },
+    'audioOn': {
+        'en-us': 'Audio (Current = on)',
+        'zh-cn': '声音 （已开启）',
     },
     'HBH': {
         'en-us': 'High Brunhilda',
@@ -54,6 +58,22 @@ localizedStrings = {
     'standard': {
         'en-us': 'Initial timeline',
         'zh-cn': '初始状态'
+    },
+    'controlPanel': {
+        'en-us': 'Control panel',
+        'zh-cn': '控制面板'
+    },
+    'importNew': {
+        'en-us': 'Import from text (creates a new entry)',
+        'zh-cn': '从文本导入（这将创建一个新的下拉菜单选项）'
+    },
+    'close': {
+        'en-us': 'Close',
+        'zh-cn': '关闭'
+    },
+    'save-load': {
+        'en-us': 'Import / Export',
+        'zh-cn': '导入 / 导出'
     }
 }
 
