@@ -74,6 +74,10 @@ localizedStrings = {
     'save-load': {
         'en-us': 'Import / Export',
         'zh-cn': '导入 / 导出'
+    },
+    'removeSpc': {
+        'en-us': 'Remove spaces (re-export)',
+        'zh-cn': '去除空格（重新导出）'
     }
 }
 

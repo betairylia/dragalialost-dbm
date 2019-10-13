@@ -77,6 +77,7 @@
         <textarea id = 'stringIOBox'></textarea>
         <div id = 'buttons'>
             <button onclick = "ImportText()" class = "BTNred autoLoc_importNew" style = "flex: 1;"> Import from text </button>
+            <button onclick = "RemoveSpace()" class = "BTNred autoLoc_removeSpc" style = "flex: 1;"> Remove spaces </button>
             <button onclick = "HideOverlay()" class = "BTNred autoLoc_close" style = "flex: 1;"> Close </button>
         </div>
     </div>
@@ -207,6 +208,11 @@
         {
             document.getElementById('stringIOBox').value = tl.getString();
             overlay.style.display = 'flex';
+        }
+
+        function RemoveSpace()
+        {
+            document.getElementById('stringIOBox').value = tl.getString(false);
         }
 
         var r = document.getElementById("subTimerContainer");

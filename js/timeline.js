@@ -29,7 +29,7 @@ class CSVIO
         this.lines.push(line);
     }
 
-    get()
+    get(pad = true)
     {
         console.log(this.maxchar);
         var result = "";
@@ -38,16 +38,16 @@ class CSVIO
             var c = 0;
             for(c = 0; c < (line.length-1); c++)
             {
-                if(line[c].length < this.maxchar[c])
+                if(pad && line[c].length < this.maxchar[c])
                 {
                     result += `${this.padString(line[c], this.maxchar[c])}, `;
                 }
                 else
                 {
-                    result += `${line[c]}, `;
+                    result += `${line[c]},${pad ? ' ' : ''}`;
                 }
             }
-            if(line[c].length < this.maxchar[c])
+            if(pad && line[c].length < this.maxchar[c])
             {
                 result += `${this.padString(line[c], this.maxchar[c])}`;
             }
@@ -823,7 +823,7 @@ class Timeline
         // this.addActionInvMSec('init', , , '');
     }
 
-    getString(padLen)
+    getString(pad = true)
     {
         var result = `VERSION, ${this.version}\n*** Basic Info ***\n`;
         var basicInfo = new CSVIO();
@@ -832,7 +832,7 @@ class Timeline
         basicInfo.submitLine(["Name", this.name['en-us'], this.name['zh-cn']])
         basicInfo.submitLine(["Main color", this.mainColor]);
 
-        result += basicInfo.get() + "\n"
+        result += basicInfo.get(pad) + "\n"
         result += "*** Actions ***\n";
 
         var actStr = new CSVIO();
@@ -847,7 +847,7 @@ class Timeline
             }
         }
 
-        result += actStr.get() + "\n"
+        result += actStr.get(pad) + "\n"
         result += "*** Timelines ***\n";
 
         var treeStr = new CSVIO()
@@ -891,7 +891,7 @@ class Timeline
             }
         }
 
-        result += treeStr.get() + "\n"
+        result += treeStr.get(pad) + "\n"
 
         return result;
     }
