@@ -23,6 +23,10 @@ localizedStrings = {
         'en-us': 'High Brunhilda',
         'zh-cn': '真布伦希尔德',
     },
+    'MHBH': {
+        'en-us': 'High Brunhilda (Master)',
+        'zh-cn': '真布伦希尔德 - 高级',
+    },
     'HMC': {
         'en-us': 'High Mercury',
         'zh-cn': '真墨丘利',

@@ -311,6 +311,219 @@ class Timeline
         // this.addEventInvMSec('init', 'bk0410', 'break 4:10', 'break', 4, 10);
     }
 
+    MHBH_test()
+    {
+        // this.name = "High Brunhilda"
+        this.name = {
+            'en-us': "High Brunhilda (Master)",
+            'zh-cn': "真布伦希尔德 - 超级",
+        }
+
+        this.actions = {
+            'boom': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "真焰爆发",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '1',
+            },
+            'jump': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "后跳喷火",
+                },
+                'color':        "orange",
+                'alertSFX':     "avoid",
+                'countdown':    3,
+                'shortcut':     '2',
+            },
+            'fbre': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "烈焰吐息",
+                },
+                'color':        "orange",
+                'alertSFX':     'fbre_test.mp3',
+                'countdown':    3,
+                'shortcut':     '3',
+            },
+            'char': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "前冲",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '4',
+            },
+            'claw': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "爪击",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '5',
+            },
+            'crim': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "绯红地狱",
+                },
+                'color':        "crimson",
+                'alertSFX':     'crim_short_test.mp3',
+                'countdown':    5,
+                'shortcut':     '6',
+            },
+            'volc': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "陨落熔岩",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '7',
+            },
+            'hell': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "地狱之火",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '8',
+            },
+            'chas': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "烈焰追击",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '9',
+            },
+            'sear': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "红莲阵",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     '0',
+            },
+            'mete': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "全体小陨石",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     'q',
+            },
+            'gran': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "真 · 火焰国度",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     'w',
+            },
+            'cros': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "真十字火焰",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     'e',
+            },
+            'melt': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "热情似火",
+                },
+                'color':        "red",
+                'alertSFX':     "together",
+                'countdown':    3,
+                'shortcut':     'r',
+            },
+            'ncros': {
+                'displayName':  {
+                    'en-us': "",
+                    'zh-cn': "消失：真十字火焰",
+                },
+                'color':        "orange",
+                'alertSFX':     null,
+                'countdown':    0,
+                'shortcut':     't',
+            },
+        };
+
+        this.addActionInvMSec('init', 4, 56, 'boom');
+        this.addActionInvMSec('init', 4, 53, 'jump');
+        this.addActionInvMSec('init', 4, 45, 'fbre');
+        this.addActionInvMSec('init', 4, 40, 'crim');
+        this.addActionInvMSec('init', 4, 35, 'crim');
+        this.addActionInvMSec('init', 4, 30, 'crim');
+        this.addActionInvMSec('init', 4, 24, 'melt');
+        this.addActionInvMSec('init', 4, 14, 'volc');
+        this.addActionInvMSec('init', 4,  9, 'volc');
+        this.addActionInvMSec('init', 4,  8, 'hell');
+        this.addActionInvMSec('init', 4,  4, 'char');
+        this.addActionInvMSec('init', 4,  1, 'hell');
+        this.addActionInvMSec('init', 4,  0, 'volc');
+        this.addActionInvMSec('init', 3, 56, 'fbre');
+        this.addActionInvMSec('init', 3, 55, 'volc');
+        this.addActionInvMSec('init', 3, 50, 'hell');
+        this.addActionInvMSec('init', 3, 47, 'jump');
+        this.addActionInvMSec('init', 3, 42, 'hell');
+        this.addActionInvMSec('init', 3, 37, 'cros');
+        this.addActionInvMSec('init', 3, 19, 'mete');
+        this.addActionInvMSec('init', 3, 16, 'ncros');
+        this.addActionInvMSec('init', 3, 11, 'chas');
+        this.addActionInvMSec('init', 3,  3, 'sear');
+        this.addActionInvMSec('init', 2, 57, 'melt');
+        this.addActionInvMSec('init', 2, 47, 'char');
+        this.addActionInvMSec('init', 2, 43, 'mete');
+        this.addActionInvMSec('init', 2, 35, 'fbre');
+        this.addActionInvMSec('init', 2, 28, 'crim');
+        this.addActionInvMSec('init', 2, 23, 'crim');
+        this.addActionInvMSec('init', 2, 18, 'crim');
+        this.addActionInvMSec('init', 2, 10, 'volc');
+        this.addActionInvMSec('init', 2,  4, 'volc');
+        this.addActionInvMSec('init', 2,  4, 'hell');
+        this.addActionInvMSec('init', 1, 57, 'mete');
+        this.addActionInvMSec('init', 1, 53, 'hell');
+        this.addActionInvMSec('init', 1, 48, 'fbre');
+        this.addActionInvMSec('init', 1, 42, 'hell');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+        // this.addActionInvMSec('init', , , '');
+
+        // this.addActionInvMSec('init', , , '');
+
+        // this.addEventInvMSec('init', 'bk0410', 'break 4:10', 'break', 4, 10);
+    }
+
     HMC_test()
     {
         // this.name = "High Mercury"
