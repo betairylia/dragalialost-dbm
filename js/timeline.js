@@ -418,7 +418,7 @@ class Timeline
         this.actions = {
             'boom': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Tidal Explosion",
                     'zh-cn': "审判漩涡",
                 },
                 'color':        "dodgerblue",
@@ -428,7 +428,7 @@ class Timeline
             },
             'down': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Stomp",
                     'zh-cn': "下砸",
                 },
                 'color':        "cadetblue",
@@ -438,7 +438,7 @@ class Timeline
             },
             'dash': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Dash",
                     'zh-cn': "前冲",
                 },
                 'color':        "cadetblue",
@@ -448,7 +448,7 @@ class Timeline
             },
             'tail': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Tail swipe",
                     'zh-cn': "甩尾",
                 },
                 'color':        "blueviolet",
@@ -459,7 +459,7 @@ class Timeline
             },
             'spot': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Water shotgun",
                     'zh-cn': "水弹",
                 },
                 'color':        "dodgerblue",
@@ -469,7 +469,7 @@ class Timeline
             },
             'spot2': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Water shotgun (2x)",
                     'zh-cn': "水弹 (x2)",
                 },
                 'color':        "dodgerblue",
@@ -479,7 +479,7 @@ class Timeline
             },
             'spot3': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Water shotgun (3x)",
                     'zh-cn': "水弹 (x3)",
                 },
                 'color':        "dodgerblue",
@@ -489,7 +489,7 @@ class Timeline
             },
             'wash': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Whirlpools",
                     'zh-cn': "洗衣机",
                 },
                 'color':        "blue",
@@ -499,7 +499,7 @@ class Timeline
             },
             'bubb': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Spheres of Salvation",
                     'zh-cn': "救济之泡",
                 },
                 'color':        "springgreen",
@@ -509,7 +509,7 @@ class Timeline
             },
             'fall': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Waterfall",
                     'zh-cn': "瀑布",
                 },
                 'color':        "aqua",
@@ -519,7 +519,7 @@ class Timeline
             },
             'lock': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Aqueous prison",
                     'zh-cn': "水之牢笼",
                 },
                 'color':        "steelblue",
@@ -529,7 +529,7 @@ class Timeline
             },
             'chas': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Homing bubble",
                     'zh-cn': "追踪水球",
                 },
                 'color':        "royalblue",
@@ -539,7 +539,7 @@ class Timeline
             },
             'spre': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Bursting bubbles",
                     'zh-cn': "增殖水泡",
                 },
                 'color':        "powderblue",
@@ -549,7 +549,7 @@ class Timeline
             },
             'mobs': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Summon help",
                     'zh-cn': "召唤伙伴",
                 },
                 'color':        "gold",
@@ -559,7 +559,7 @@ class Timeline
             },
             'brke': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Break ends",
                     'zh-cn': "Break 结束",
                 },
                 'color':        "khaki",
