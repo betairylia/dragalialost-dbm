@@ -313,215 +313,97 @@ class Timeline
 
     MHBH_test()
     {
-        // this.name = "High Brunhilda"
-        this.name = {
-            'en-us': "High Brunhilda (Master)",
-            'zh-cn': "真布伦希尔德 - 超级",
-        }
-
-        this.actions = {
-            'boom': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "真焰爆发",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '1',
-            },
-            'jump': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "后跳喷火",
-                },
-                'color':        "orange",
-                'alertSFX':     "avoid",
-                'countdown':    3,
-                'shortcut':     '2',
-            },
-            'fbre': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "烈焰吐息",
-                },
-                'color':        "orange",
-                'alertSFX':     'fbre_test.mp3',
-                'countdown':    3,
-                'shortcut':     '3',
-            },
-            'char': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "前冲",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '4',
-            },
-            'claw': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "爪击",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '5',
-            },
-            'crim': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "绯红地狱",
-                },
-                'color':        "crimson",
-                'alertSFX':     'crim_short_test.mp3',
-                'countdown':    5,
-                'shortcut':     '6',
-            },
-            'volc': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "陨落熔岩",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '7',
-            },
-            'hell': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "地狱之火",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '8',
-            },
-            'chas': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "烈焰追击",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '9',
-            },
-            'sear': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "红莲阵",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     '0',
-            },
-            'mete': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "全体小陨石",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     'q',
-            },
-            'gran': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "真 · 火焰国度",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     'w',
-            },
-            'cros': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "真十字火焰",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     'e',
-            },
-            'melt': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "热情似火",
-                },
-                'color':        "red",
-                'alertSFX':     "together",
-                'countdown':    3,
-                'shortcut':     'r',
-            },
-            'ncros': {
-                'displayName':  {
-                    'en-us': "",
-                    'zh-cn': "消失：真十字火焰",
-                },
-                'color':        "orange",
-                'alertSFX':     null,
-                'countdown':    0,
-                'shortcut':     't',
-            },
-        };
-
-        this.addActionInvMSec('init', 4, 56, 'boom');
-        this.addActionInvMSec('init', 4, 53, 'jump');
-        this.addActionInvMSec('init', 4, 45, 'fbre');
-        this.addActionInvMSec('init', 4, 40, 'crim');
-        this.addActionInvMSec('init', 4, 35, 'crim');
-        this.addActionInvMSec('init', 4, 30, 'crim');
-        this.addActionInvMSec('init', 4, 24, 'melt');
-        this.addActionInvMSec('init', 4, 14, 'volc');
-        this.addActionInvMSec('init', 4,  9, 'volc');
-        this.addActionInvMSec('init', 4,  8, 'hell');
-        this.addActionInvMSec('init', 4,  4, 'char');
-        this.addActionInvMSec('init', 4,  1, 'hell');
-        this.addActionInvMSec('init', 4,  0, 'volc');
-        this.addActionInvMSec('init', 3, 56, 'fbre');
-        this.addActionInvMSec('init', 3, 55, 'volc');
-        this.addActionInvMSec('init', 3, 50, 'hell');
-        this.addActionInvMSec('init', 3, 47, 'jump');
-        this.addActionInvMSec('init', 3, 42, 'hell');
-        this.addActionInvMSec('init', 3, 37, 'cros');
-        this.addActionInvMSec('init', 3, 19, 'mete');
-        this.addActionInvMSec('init', 3, 16, 'ncros');
-        this.addActionInvMSec('init', 3, 11, 'chas');
-        this.addActionInvMSec('init', 3,  3, 'sear');
-        this.addActionInvMSec('init', 2, 57, 'melt');
-        this.addActionInvMSec('init', 2, 47, 'char');
-        this.addActionInvMSec('init', 2, 43, 'mete');
-        this.addActionInvMSec('init', 2, 35, 'fbre');
-        this.addActionInvMSec('init', 2, 28, 'crim');
-        this.addActionInvMSec('init', 2, 23, 'crim');
-        this.addActionInvMSec('init', 2, 18, 'crim');
-        this.addActionInvMSec('init', 2, 10, 'volc');
-        this.addActionInvMSec('init', 2,  4, 'volc');
-        this.addActionInvMSec('init', 2,  4, 'hell');
-        this.addActionInvMSec('init', 1, 57, 'mete');
-        this.addActionInvMSec('init', 1, 53, 'hell');
-        this.addActionInvMSec('init', 1, 48, 'fbre');
-        this.addActionInvMSec('init', 1, 42, 'hell');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-        // this.addActionInvMSec('init', , , '');
-
-        // this.addActionInvMSec('init', , , '');
-
-        // this.addEventInvMSec('init', 'bk0410', 'break 4:10', 'break', 4, 10);
+        this.fromString(`VERSION, 0.1
+        *** Basic Info ***
+        ,EN,ZH,JP
+        Name,High Brunhilda (Master),真布伦希尔德 - 超级
+        Main color,lightcoral
+        
+        *** Actions ***
+        action,Name EN,color,alert SoundFX,countdown,shortcut,Name ZH,NAME JP
+        boom,,orange,,0,1,真焰爆发,
+        jump,,orange,avoid,3,2,后跳喷火,
+        fbre,,orange,fbre_test.mp3,3,3,烈焰吐息,
+        char,,orange,,0,4,前冲,
+        claw,,orange,,0,5,爪击,
+        crim,,crimson,crim_short_test.mp3,5,6,绯红地狱,
+        volc,,orange,,0,7,陨落熔岩,
+        hell,,orange,,0,8,地狱之火,
+        chas,,orange,,0,9,烈焰追击,
+        sear,,orange,,0,0,红莲阵,
+        mete,,orange,,0,q,全体小陨石,
+        gran,,orange,,0,w,真 · 火焰国度,
+        cros,,orange,,0,e,真十字火焰,
+        melt,,red,together,3,r,热情似火,
+        ncros,,orange,,0,t,消失：真十字火焰,
+        brke,Break ends,khaki,,0,y,Break 结束,
+        
+        *** Timelines ***
+        skill,branch,name,min,sec
+        event,from,to,min,sec,event type,ref min,ref sec,display name
+        
+        ## Tree name = init
+        skill,init,boom,4,57.0
+        skill,init,jump,4,53.0
+        skill,init,fbre,4,48.0
+        skill,init,crim,4,41.0
+        skill,init,crim,4,36.0
+        skill,init,crim,4,31.0
+        skill,init,melt,4,24.0
+        skill,init,volc,4,14.0
+        skill,init,volc,4,10.0
+        skill,init,hell,4,9.0
+        skill,init,char,4,4.0
+        skill,init,hell,4,1.0
+        skill,init,volc,4,0.0
+        skill,init,fbre,3,56.0
+        skill,init,volc,3,55.0
+        skill,init,hell,3,51.0
+        skill,init,jump,3,47.0
+        skill,init,hell,3,42.0
+        skill,init,cros,3,37.0
+        skill,init,mete,3,19.0
+        skill,init,ncros,3,16.0
+        skill,init,chas,3,12.0
+        skill,init,sear,3,4.0
+        skill,init,melt,2,57.0
+        skill,init,char,2,48.0
+        skill,init,mete,2,43.0
+        skill,init,jump,2,40.0
+        skill,init,fbre,2,35.0
+        skill,init,crim,2,28.0
+        skill,init,crim,2,22.0
+        skill,init,crim,2,17.0
+        skill,init,volc,2,10.0
+        skill,init,volc,2,4.0
+        skill,init,hell,2,4.0
+        skill,init,mete,1,57.0
+        skill,init,hell,1,53.0
+        skill,init,fbre,1,48.0
+        skill,init,hell,1,42.0
+        event,init,s1,1,0.0,break,2,17.0,Break #1
+        
+        ## Tree name = s1
+        skill,s1,brke,2,7.0
+        skill,s1,gran,2,2.0
+        skill,s1,mete,1,53.0
+        skill,s1,sear,1,46.0
+        skill,s1,chas,1,37.0
+        skill,s1,crim,1,32.0
+        skill,s1,crim,1,27.0
+        skill,s1,crim,1,22.0
+        skill,s1,mete,1,11.0
+        skill,s1,melt,1,6.0
+        skill,s1,chas,0,55.5
+        skill,s1,melt,0,50.0
+        skill,s1,jump,0,44.0
+        skill,s1,fbre,0,38.0
+        skill,s1,claw,0,33.0
+        skill,s1,mete,0,23.0
+        skill,s1,melt,0,17.0
+        skill,s1,chas,0,5.0
+        
+        `);
     }
 
     HMC_test()
