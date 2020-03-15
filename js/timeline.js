@@ -124,7 +124,7 @@ class Timeline
         this.actions = {
             'boom': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Blast", // "Scorching Blast"
                     'zh-cn': "真焰爆发",
                 },
                 'color':        "orange",
@@ -134,7 +134,7 @@ class Timeline
             },
             'jump': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Jump", // "Jump Back"
                     'zh-cn': "后跳",
                 },
                 'color':        "orange",
@@ -144,7 +144,7 @@ class Timeline
             },
             'fbre': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Breath",
                     'zh-cn': "烈焰吐息",
                 },
                 'color':        "orange",
@@ -154,7 +154,7 @@ class Timeline
             },
             'char': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Dash",
                     'zh-cn': "前冲",
                 },
                 'color':        "orange",
@@ -164,7 +164,7 @@ class Timeline
             },
             'claw': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Swipe",
                     'zh-cn': "爪击",
                 },
                 'color':        "orange",
@@ -174,7 +174,7 @@ class Timeline
             },
             'crim': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Crimson", // "Crimson Inferno"
                     'zh-cn': "绯红地狱",
                 },
                 'color':        "crimson",
@@ -184,7 +184,7 @@ class Timeline
             },
             'volc': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Volcano", // "Volcanic Blitz" 
                     'zh-cn': "陨落熔岩",
                 },
                 'color':        "orange",
@@ -194,7 +194,7 @@ class Timeline
             },
             'hell': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Hellfire",
                     'zh-cn': "地狱之火",
                 },
                 'color':        "orange",
@@ -204,7 +204,7 @@ class Timeline
             },
             'chas': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Chasers", // "Flame Chaser"
                     'zh-cn': "烈焰追击",
                 },
                 'color':        "orange",
@@ -214,7 +214,7 @@ class Timeline
             },
             'sear': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Pillar", // "Searing Pillar"
                     'zh-cn': "红莲阵",
                 },
                 'color':        "orange",
@@ -224,7 +224,7 @@ class Timeline
             },
             'mete': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Meteors",
                     'zh-cn': "小陨石",
                 },
                 'color':        "orange",
@@ -234,7 +234,7 @@ class Timeline
             },
             'gran': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "Muspelheim", // "Grand Muspelheim"
                     'zh-cn': "真 · 火焰国度",
                 },
                 'color':        "orange",
@@ -244,7 +244,7 @@ class Timeline
             },
             'cros': {
                 'displayName':  {
-                    'en-us': "",
+                    'en-us': "X-Mus", // "Grand X-Muspelheim"
                     'zh-cn': "真十字火焰",
                 },
                 'color':        "orange",
@@ -321,21 +321,21 @@ class Timeline
         
         *** Actions ***
         action,Name EN,color,alert SoundFX,countdown,shortcut,Name ZH,NAME JP
-        boom,,orange,,0,1,真焰爆发,
-        jump,,orange,avoid,3,2,后跳喷火,
-        fbre,,orange,fbre_test.mp3,3,3,烈焰吐息,
-        char,,orange,,0,4,前冲,
-        claw,,orange,,0,5,爪击,
-        crim,,crimson,crim_short_test.mp3,5,6,绯红地狱,
-        volc,,orange,,0,7,陨落熔岩,
-        hell,,orange,,0,8,地狱之火,
-        chas,,orange,,0,9,烈焰追击,
-        sear,,orange,,0,0,红莲阵,
-        mete,,orange,,0,q,全体小陨石,
-        gran,,orange,,0,w,真 · 火焰国度,
-        cros,,orange,,0,e,真十字火焰,
-        melt,,red,together,3,r,热情似火,
-        ncros,,orange,,0,t,消失：真十字火焰,
+        boom,Blast,orange,,0,1,真焰爆发,
+        jump,Jump,orange,avoid,3,2,后跳喷火,
+        fbre,Breath,orange,fbre_test.mp3,3,3,烈焰吐息,
+        char,Dash,orange,,0,4,前冲,
+        claw,Swipe,orange,,0,5,爪击,
+        crim,Crimson,crimson,crim_short_test.mp3,5,6,绯红地狱,
+        volc,Volcano,orange,,0,7,陨落熔岩,
+        hell,Hellfire,orange,,0,8,地狱之火,
+        chas,Chasers,orange,,0,9,烈焰追击,
+        sear,Pillar,orange,,0,0,红莲阵,
+        mete,Meteors,orange,,0,q,全体小陨石,
+        gran,Muspelheim,orange,,0,w,真 · 火焰国度,
+        cros,X-Mus,orange,,0,e,真十字火焰,
+        melt,Meltdown,red,together,3,r,热情似火,
+        ncros,Lava Ends,orange,,0,t,消失：真十字火焰,
         brke,Break ends,khaki,,0,y,Break 结束,
         
         *** Timelines ***
@@ -648,7 +648,7 @@ class Timeline
 
     HJP_test()
     {
-        // this.name = "High Mercury"
+        // this.name = "High Jupiter"
         this.name = {
             'en-us': "High Jupiter",
             'zh-cn': "真朱庇特",
