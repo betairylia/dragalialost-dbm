@@ -406,6 +406,86 @@ class Timeline
         `);
     }
 
+    HMS_test()
+    {
+        this.fromString(`VERSION, 0.1
+        *** Basic Info ***
+                  ,           EN,   ZH, JP
+              Name, High Midgarsomr, 真耶梦加得
+        Main color,      #96C78C
+        
+        *** Actions ***
+        action, Name EN,           color, alert SoundFX, countdown, shortcut,  Name ZH, NAME JP
+          boom,        ,     chartreuse1,              ,         0,        0,     核爆,        
+          trident,     ,       burlywood,    HMStrident,         3,        1,       三角暴风,        
+          dash,        ,       burlywood,       HMSdash,         3,        2,       前冲+大回旋,        
+          jump,        ,          yellow,       HMSjump,         3,        3,      后跳,        
+          spit,        ,          yellow,       HMSspit,         3,        4,  三口痰,        
+          octwind,     ,          yellow,    HMSoctwind,         3,        5,     全屏风,        
+          spotred,     ,          yellow,    HMSspotred,         3,        6,     红圈分担,        
+         spotred2,     ,           coral,   HMSspotred2,         3,        7, 红圈奶妈吃,       
+          chaser,      , mediumvioletred,     HMSchaser,         3,        8,     裂空域,        
+          gale,        ,          orange,       HMSgale,         3,        9, 疾风弹,        
+          mobs,        ,      darkviolet,       HMSmobs,         0,        0,     召唤伙伴,              
+          brke,        ,     yellowgreen,              ,         3,        e, Break 结束,        
+        
+        *** Timelines ***
+        skill, branch,  name, min,  sec
+        event,   from,    to, min,  sec, event type, ref min, ref sec, display name
+             
+        ## Tree name = init
+        skill,   init,  boom,   4, 56.0
+        skill,   init,  trident,   4, 46.0
+        skill,   init,  dash,   4, 40.0
+        skill,   init,  jump,   4, 34.0
+        skill,   init,  spit,   4, 31.0
+        skill,   init,  octwind,   4, 24.0
+        skill,   init,  spotred,   4, 20.0
+        skill,   init,  chaser,   4, 12.0
+        skill,   init,  dash,   4, 07.0
+        skill,   init,  spit,   4, 01.0
+        skill,   init,  jump,   3, 52.0
+        skill,   init,  trident,   3, 48.0
+        skill,   init,  dash,   3, 43.0
+        skill,   init,  spit,   3, 36.0
+        skill,   init,  octwind,   3, 29.0
+        skill,   init,  dash,   3, 21.0
+        skill,   init,  mobs,   3, 15.0
+        skill,   init,  spit,   3, 13.0
+        skill,   init,  dash,   3, 07.0
+        skill,   init,  jump,   2, 56.0
+        skill,   init,  trident,   2, 53.0
+        skill,   init,  dash,   2, 48.0
+        skill,   init,  octwind,   2, 42.0
+        skill,   init,  spit,   2, 37.0
+        skill,   init,  jump,   2, 27.0
+        skill,   init,  gale,   2, 23.0
+        skill,   init,  dash,   2, 19.0
+        skill,   init,  jump,   2, 10.0
+        skill,   init,  spit,   2, 06.0
+        skill,   init,  octwind,   2, 00.0
+        skill,   init,  spotred,   1, 55.0
+        skill,   init,  chaser,   1, 48.0
+        skill,   init,  trident,   1, 42.0
+        skill,   init,  dash,   1, 33.0
+        skill,   init,  gale,   1, 27.0
+        skill,   init,  spotred2,   1, 23.0
+        skill,   init,  chaser,   1, 17.0
+        skill,   init,  spit,   1, 10.0
+        skill,   init,  octwind,   1, 03.0
+        skill,   init,  dash,   0, 59.0
+        skill,   init,  octwind,   0, 49.0
+        skill,   init,  chaser,   0, 44.0
+        skill,   init,  spotred,   0, 38.0
+        skill,   init,  dash,   0, 31.0
+        skill,   init,  trident,   0, 29.0
+        skill,   init,  jump,   0, 23.0
+        skill,   init,  spit,   0, 19.0
+        skill,   init,  gale,   0, 13.0
+        skill,   init,  spotred,   0, 07.0
+        `)
+    }
+
     HMC_test()
     {
         // this.name = "High Mercury"

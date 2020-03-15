@@ -19,6 +19,10 @@ localizedStrings = {
         'en-us': 'Audio (Current = on)',
         'zh-cn': '声音 （已开启）',
     },
+    'HMS': {
+        'en-us': 'High Midgarsmor',
+        'zh-cn': '真耶梦加得（未授权）',
+    },
     'HBH': {
         'en-us': 'High Brunhilda',
         'zh-cn': '真布伦希尔德',
